@@ -1,1 +1,103 @@
-note
+在系统中新建一个文件夹 ，并在文件夹中打开终端
+
+Sudo su
+
+
+apt-get update
+apt-get install git -y
+
+
+git clone https://github.com/creationix/nvm.git nvm
+
+chmod 777 nvm
+ cat  nvm/nvm.sh >> ~/.bashrc
+
+source ~/.bashrc
+nvm install node
+npm install -g hexo-cli
+
+
+nvm -v
+npm -v
+node -v
+hexo -v
+
+
+
+mkdir hexo
+
+chmod 777 ./
+
+cd hexo
+
+chmod 777 ./
+
+
+ chmod -R 777 blg1.3(改的博客备份以下)
+ 
+hexo d
+ 
+ 
+ 如果提示找不到git执行下面命令
+ npm uninstall hexo-deployer-git  --save
+
+
+ npm install hexo-deployer-git  --save
+ 
+ 
+ 
+ 最后 执行下 git init 
+ 然后执行 hexo d
+
+
+
+npm i -S hexo-generator-json-content
+npm install hexo-wordcount --save
+
+卸载不要的依赖
+npm uninstall hexo-randerer-stylus
+npm uninstall hexo-renderer-marked
+
+
+下载
+npm i -S hexo-renderer-markdown-it
+
+npm i -s hexo-asset-image
+
+
+支持表情和数学公式
+npm i -S markdown-it-emoji
+
+npm i -S @iktakahiro/markdown-it-katex
+
+
+
+npm install hexo-neat --save
+
+  
+# hexo-neat
+neat_enable: true
+neat_html:
+  enable: true
+  exclude:
+neat_css:
+  enable: true
+  exclude:
+    - '*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - ‘*.min.js’ 
+    
+    
+    
+ git config --global user.name bigflya
+  
+  
+ git config --global user.email 2358784886@qq.com
+
+    
+
