@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="bigfly">
+    
+    <title>
+        
+            Mahalanobis距离 |
+        
+        BigflyのBlog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/head.jpg","favicon":"/images/logo.svg","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay hungry, Stay foolish.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":"欢迎大家评论留言："},"gitalk":{"github_id":"bigflya","github_admins":null,"repository":"blogcomment","client_id":"316266297ae09f8db378","client_secret":"463a369b390196542f5f4369654d53e8f00a75b8","proxy":null},"twikoo":{"env_id":"https://bigflya.zeabur.app","region":null,"version":"1.6.16"},"waline":{"server_url":null,"reaction":null,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/head.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               BigflyのBlog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/CodeModules"
+                            >
+                                CODE
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/CodeModules">CODE</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Mahalanobis距离</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/head.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">bigfly</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-08-25 20:45:56</span>
+        <span class="mobile">2023-08-25 20:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-08-25 20:45:56</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8E%9F%E7%90%86/">原理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="知识储备："><a href="#知识储备：" class="headerlink" title="知识储备："></a>知识储备：</h3><ul>
+<li>协方差概念</li>
+<li>欧几里得距离（欧氏距离）</li>
+<li>线性代数</li>
+<li>PCA算法</li>
+</ul>
+<h3 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h3><p>在学习deepsort相关内容，提到了马氏距离，之前也有所耳闻，但没有深入了解，只是知道它是度量学习中一种常用的距离指标，同欧氏距离、曼哈顿距离、汉明距离等一样被用作评定数据之间相似度的一种指标。查阅了很多博主写的相关文章，似乎没有讲到本质的地方且对新手不太友好，借此机会对其原理以及方法进行了详细了解，并用笔者的思路来为大家进行讲解。</p>
+<h3 id="二、概念："><a href="#二、概念：" class="headerlink" title="二、概念："></a>二、概念：</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230826143142093.png"
+                      alt="image-20230826143142093"
+                ></p>
+<h3 id="三、解释"><a href="#三、解释" class="headerlink" title="三、解释"></a>三、解释</h3><p>以上是维基百科给出的解释，看到这你是不是懵逼了，没关系且听我细说。</p>
+<p><strong>大话概念：</strong>马氏距离是一种测量两个点之间距离的方法，不同于欧几里得距离，它<em>考虑了数据的协方差</em>。这使得马氏距离能有效得度量在多维空间中的距离，尤其是对用不同维度之间存在相关性的数据。</p>
+<h3 id="四、欧氏距离与马氏距离"><a href="#四、欧氏距离与马氏距离" class="headerlink" title="四、欧氏距离与马氏距离"></a>四、欧氏距离与马氏距离</h3><h4 id="4-1-单变量欧氏距离"><a href="#4-1-单变量欧氏距离" class="headerlink" title="4.1 单变量欧氏距离"></a>4.1 单变量欧氏距离</h4><p>如下图，假设圆圈表示数据样本，数据的均值为0，那么欧式距离就是圆圈离0的远近。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825152144396.png"
+                     
+                ></p>
+<center>图1</center>
+
+<h4 id="4-2-多变量欧氏距离"><a href="#4-2-多变量欧氏距离" class="headerlink" title="4.2 多变量欧氏距离"></a>4.2 多变量欧氏距离</h4><p>图2为高维空间中数据点在平面上的投影图中的红色➕表示数据点的均值点，<em><strong>点i</strong></em>（任意数据点）与均值点之间的欧氏距离可通过如下公式计算得到。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825151039744.png"
+                     
+                ></p>
+<center>图2</center>
+
+<h4 id="4-3欧氏距离的局限性"><a href="#4-3欧氏距离的局限性" class="headerlink" title="4.3欧氏距离的局限性"></a>4.3欧氏距离的局限性</h4><p>如图3所示若数据样本之间存在协方差，那么欧式距离就不太适用。例如图中的红色方块和蓝色方块距离均值点 ➕的欧式距离是相等的。直观的看红色方块是一个异常点（离群点），此时若用欧几里得距离作为度量距离的指标显然不太适合。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825152955860.png"
+                     
+                ></p>
+<center>图3</center>
+
+<h4 id="4-4马氏距离"><a href="#4-4马氏距离" class="headerlink" title="4.4马氏距离"></a>4.4马氏距离</h4><p><strong>协方差：</strong></p>
+<p>$$<br>Cov(X,Y) &#x3D; E((X-E[X])(Y-E[Y]))<br>         &#x3D; E(XY)-2E(X)E(Y)-E(X)E(Y)<br>         &#x3D; E(XY)-E(X)E(Y)<br>$$</p>
+<blockquote>
+<p>对于上述公式中E表示求均值，对于第一行若有Y&#x3D;X则Cov(X,Y) &#x3D; E((X-E[X])(Y-E[Y]))&#x3D;(X-E[X])(X-E[X])&#x3D;var(X),即一个变量与自身的协方差等于方差，记住这一点后面会用到。</p>
+</blockquote>
+<p>所有变量对的协方差矩阵如下图所示：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825155906098.png"
+                      alt="image-20230825155906098"
+                ></p>
+<p>协方差矩阵是一个方阵，这里展示的是一个3x3的协方差矩阵，它包含所有变量对之间的协方差。</p>
+<p>基于以下两点我们可以对上面的协方差矩阵进行变形,变形结果如下所示。</p>
+<ol>
+<li>一个变量X与自身的协方差也就是方差，这一点在前面推导有提到过，在此不再赘述。</li>
+<li>协方差满足交换律即cov(x1,x2)&#x3D;cov(x2,x1)</li>
+</ol>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825160701823.png"
+                      alt="image-20230825160701823"
+                ></p>
+<p>上述矩阵是一个实对称矩阵。且在主斜对角线上面的值都是方差，这也就是协方差矩阵名称的来源。</p>
+<p>回到欧几里得距离的问题，如果我们能以某种方式，重新缩放图4，使得变量之间不再具有其协方差，它会鲁棒性更强，这就是马氏距离要解决的问题，了解这一点我认为是至关重要的，很多很多博主都讲马氏距离、协方差、讲的没错，但没有刨根问题，究其本质。后面笔者将讲述如何对其进行Rescaling to Remove Covariance,也就是去协方差。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825161242183.png"
+                     
+                ></p>
+<center>图4</center>
+
+
+
+<p><strong>Rescaling to Remove Covariance：</strong></p>
+<p>首先讲这个问题之前我们先来回顾一个表达式Ax&#x3D;λx,也就是特征值与特征向量之间的关系。举一个简单的例子：</p>
+<p>这是一个2x2的矩阵：<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825163733360.png"
+                      alt="image-20230825163733360"
+                ></p>
+<p>N维矩阵有N个特征向量，且不同特征向量相互正交，这里笔者举例的特征向量是二维的，所以其有两个相互正交的特征向量，我们找到其一个特征向量，通过Ax&#x3D;λx构造如下表达式：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825163928043.png"
+                      alt="image-20230825163928043"
+                ></p>
+<p>所以我们就可以根据线性代数的知识求出特征值I和特征向量x（也就是Ax&#x3D;λx中的λ和x）。对图3中的数据求其协方差矩阵对应特征向量、特征值，结果如图5所示。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825164641198.png"
+                     
+                ></p>
+<center>图5</center<>
+
+
+
+<blockquote>
+<p>提示：有小伙伴可能好奇特征向量是如何求出的，这里笔者不进行详细讲解，这是线性代数的相关内容。但给出一些结论。首先最大特征向量与数据最大方向差方向一致，如上图中红色直线所指，，其次特征向量是相互正交的，且第二特征向量是与第一特征向量垂直的方向上数据方向差最大的方向，以此类推可以求出所有特征向量</p>
+</blockquote>
+<p>得到特征向量之后，以特征向量为坐标轴对数据点进行旋转变换，并且对数据点进行尺度压缩，也就是对特征向量所在坐标轴的尺度除以其特征值的平方根，这样特征值大的坐标轴被压缩的尺度也就相应的大一些。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/yyyyy.png"
+                     
+                ></p>
+<center>图6</center<>
+
+<p>如上图所示作图为原始的数据点，其中红点与绿点距离距离均值点（黑点）的欧几里得距离是相等的，可以对其进行坐标轴旋转，得到中间的 数据分布，之后对其进行数据压缩可以得到有图所示的点，如此就可以过滤掉离群点，也就是其中的红点。</p>
+<p>绘制代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> pdist</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> array, cov, diag, mean, sqrt, vstack</span><br><span class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> multivariate_normal</span><br><span class="line"><span class="keyword">from</span> numpy.linalg <span class="keyword">import</span> eig</span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;生成二维正太分布数据`X` 两个维度间的协方差为0.8(强相关).</span></span><br><span class="line"><span class="string">在X的尾部加入点A和点B,点B属于数据集X而点A为异常点,且点A和B到原点(0,0)的`欧式距离`相等.</span></span><br><span class="line"><span class="string">本次实验旨在通过坐标旋转和缩放后通过欧式距离将点A和B区分开,理解马氏距离中sigma的物理意义.&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">N = <span class="number">100</span>  <span class="comment"># 数据集大小</span></span><br><span class="line">X = multivariate_normal(mean=[<span class="number">0</span>, <span class="number">0</span>],size=N,cov=[[<span class="number">1</span>, <span class="number">0.8</span>],[<span class="number">0.8</span>, <span class="number">1</span>]])</span><br><span class="line">point_A = array([-<span class="number">3</span>, <span class="number">2</span>])  <span class="comment"># 异常点</span></span><br><span class="line">point_B = array([<span class="number">3</span>, <span class="number">2</span>])<span class="comment"># 添加点A和B到尾部</span></span><br><span class="line">X = vstack((X, point_A))</span><br><span class="line">X = vstack((X, point_B))<span class="comment"># 旋转</span></span><br><span class="line">Q, U = eig(cov(X, rowvar=<span class="literal">False</span>))</span><br><span class="line">Y = X.dot(U)</span><br><span class="line"><span class="comment"># 缩放</span></span><br><span class="line">Cov_Y = cov(Y, rowvar=<span class="literal">False</span>)  <span class="comment"># 求Y的协方差矩阵</span></span><br><span class="line">diag_Y = diag([sqrt(<span class="number">1</span>/Cov_Y[i][i]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(Cov_Y))])  <span class="comment"># 取协方差矩阵对角线元素的倒数</span></span><br><span class="line">Z = Y.dot(diag_Y)  <span class="comment"># 缩放后的特征print(pdist(X, &#x27;mahalanobis&#x27;)) # 原始数据X的马氏距离</span></span><br><span class="line"><span class="built_in">print</span>(pdist(Z)) <span class="comment"># 旋转缩放后的欧氏距离</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_point</span>(<span class="params">data, N, plt_temp</span>):</span><br><span class="line">    plt_temp.scatter(data[:N, <span class="number">0</span>], data[:N, <span class="number">1</span>], c=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">    plt_temp.scatter(data[N, <span class="number">0</span>], data[N, <span class="number">1</span>], c=<span class="string">&#x27;r&#x27;</span>)  <span class="comment"># 点A</span></span><br><span class="line">    plt_temp.scatter(data[N+<span class="number">1</span>, <span class="number">0</span>], data[N+<span class="number">1</span>, <span class="number">1</span>], c=<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">    plt_temp.scatter(<span class="number">0</span>, <span class="number">0</span>, c=<span class="string">&#x27;k&#x27;</span>)  <span class="comment"># 原点</span></span><br><span class="line"></span><br><span class="line">    plt.axis(<span class="string">&#x27;square&#x27;</span>)</span><br><span class="line">    plt_temp.xlim([-<span class="number">7</span>, <span class="number">7</span>])</span><br><span class="line">    plt_temp.ylim([-<span class="number">7</span>, <span class="number">7</span>])</span><br><span class="line">    <span class="keyword">return</span> plt_temp</span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&#x27;xtick.direction&#x27;</span>]= <span class="string">&#x27;in&#x27;</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;ytick.direction&#x27;</span>]= <span class="string">&#x27;in&#x27;</span></span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">plt = plot_point(X, N, plt)</span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">plt = plot_point(Y, N, plt)</span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">plt = plot_point(Z, N, plt)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>用公式表示如图7，其中S为协方差矩阵，协方差矩的逆阵左乘均值的转置并右乘均值，就得到马氏距离的平方，当协方差为单位阵那么马氏距离就可以简化为欧氏距离。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230825201826733.png"
+                     
+                ></p>
+<center>图7</center<>
+
+
+<p>这里的核心思想就是，如果数据在某个方向上变化较大，那么在这个方向上的单位距离就应该被“缩短”，而如果数据在某个方向上变化较小，那么这个方向上的单位距离就应该被‘拉长“，这就是协方差矩阵所起的作用。</p>
+<h3 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h3><p>马氏距离的步骤结论：</p>
+<ol>
+<li>将含义协方差的数据分布转换为没有协方差的数据分布，使得数据的鲁棒性更强；</li>
+<li>使得他们的方差为1；</li>
+<li>计算变换后数据分布的欧几里得距离即为马氏距离。</li>
+</ol>
+<p>与欧氏距离不同的是，马氏距离考虑了各种特性之间的联系（例如：一条关于身高的信息会带来一条关于体重的信息，因为这两者之间是有一定的关联的），并且尺度无关的（scale-invariant），即独立于测量尺度。</p>
+<p><em><strong>一句话总结：</strong></em>马氏距离通过将数据进行坐标旋转，并缩放到另一个空间后可以直接使用欧式距离，进而过滤掉在欧氏距离中无法过滤的离群点。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">Mahalanobis距离</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">bigfly</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2023-08-25 20:45:56</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2023/08/25/Mahalanobis距离/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8E%9F%E7%90%86/">#原理</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/09/09/%E6%8B%B7%E8%B4%9D%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%87%BD%E6%95%B0%E5%92%8C%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">拷贝赋值运算符重载函数和拷贝构造函数的区别</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/07/01/%E4%BA%8C%E7%BA%A7%E6%8C%87%E9%92%88%E4%BC%A0%E5%8F%82%E4%BF%AE%E6%94%B9%E5%9C%B0%E5%9D%80/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">二级指针传参修改地址</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">知识储备：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">一、前言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">二、概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%A7%A3%E9%87%8A"><span class="nav-number">4.</span> <span class="nav-text">三、解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB%E4%B8%8E%E9%A9%AC%E6%B0%8F%E8%B7%9D%E7%A6%BB"><span class="nav-number">5.</span> <span class="nav-text">四、欧氏距离与马氏距离</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E5%8D%95%E5%8F%98%E9%87%8F%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 单变量欧氏距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%A4%9A%E5%8F%98%E9%87%8F%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 多变量欧氏距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3%E6%AC%A7%E6%B0%8F%E8%B7%9D%E7%A6%BB%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">5.3.</span> <span class="nav-text">4.3欧氏距离的局限性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4%E9%A9%AC%E6%B0%8F%E8%B7%9D%E7%A6%BB"><span class="nav-number">5.4.</span> <span class="nav-text">4.4马氏距离</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">六、总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2025
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">bigfly</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    本站由 <span class="tooltip" data-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span> 提供部署服务
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

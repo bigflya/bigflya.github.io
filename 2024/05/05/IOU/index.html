@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="bigfly">
+    
+    <title>
+        
+            IOU在不同阶段的作用 |
+        
+        BigflyのBlog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/head.jpg","favicon":"/images/logo.svg","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay hungry, Stay foolish.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":"欢迎大家评论留言："},"gitalk":{"github_id":"bigflya","github_admins":null,"repository":"blogcomment","client_id":"316266297ae09f8db378","client_secret":"463a369b390196542f5f4369654d53e8f00a75b8","proxy":null},"twikoo":{"env_id":"https://bigflya.zeabur.app","region":null,"version":"1.6.16"},"waline":{"server_url":null,"reaction":null,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/head.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               BigflyのBlog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/CodeModules"
+                            >
+                                CODE
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/CodeModules">CODE</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">IOU在不同阶段的作用</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/head.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">bigfly</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2024-05-05 20:45:56</span>
+        <span class="mobile">2024-05-05 20:45</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2024-05-05 20:45:56</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">目标检测</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h1><p>IOU（Intersection over Union）是目标检测中常用的一个指标，用于衡量两个边界框之间的重叠程度。它是通过计算两个边界框的交集面积与它们的并集面积之比来确定的。</p>
+<p>具体地，IOU可以用以下公式表示：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/85d18c121980496d95880db69b0183a1.png"
+                      alt="img"
+                ></p>
+<p>其中，Area of Overlap表示两个边界框的交集面积，而Area of Union表示两个边界框的并集面积。</p>
+<h2 id="1、IOU在模型训练中的作用"><a href="#1、IOU在模型训练中的作用" class="headerlink" title="1、IOU在模型训练中的作用"></a>1、IOU在模型训练中的作用</h2><p>在目标检测模型的训练中，IOU（Intersection over Union）通常用作损失函数的一部分，主要用于衡量模型预测框（bounding box）与真实目标框之间的重叠程度。IOU被广泛用于目标检测任务的训练和评估中，其作用包括：</p>
+<ol>
+<li><strong>损失函数计算：</strong> IOU常被用于计算目标检测模型的损失函数，尤其是在两个框之间进行匹配时。通过计算模型预测框与真实目标框之间的IOU，可以量化模型预测的准确性，并据此调整模型参数，使预测结果更接近真实目标。</li>
+<li><strong>Anchor框选择：</strong> 在一些目标检测模型中，需要预先定义一些Anchor框（候选框）来辅助目标检测。IOU可以帮助选择最适合的Anchor框，即与真实目标框具有最高IOU的Anchor框，从而提高模型的训练效果和检测性能。</li>
+<li><strong>正负样本筛选：</strong> 在训练过程中，IOU还常被用于筛选正负样本。通常情况下，IOU大于某个阈值的预测框被视为正样本（表示与真实目标框重叠较高），而IOU低于另一个阈值的预测框则被视为负样本（表示与真实目标框重叠较低），从而帮助模型更好地学习目标检测任务。</li>
+</ol>
+<h2 id="2、IOU在模型应用时的作用"><a href="#2、IOU在模型应用时的作用" class="headerlink" title="2、IOU在模型应用时的作用"></a>2、IOU在模型应用时的作用</h2><p>在使用模型进行实际检测时，设定IOU（Intersection over Union）阈值可以用于控制检测结果的质量和数量。具体来说，设定IOU阈值可以帮助筛选检测结果，过滤掉那些与已知目标重叠度较高的检测结果，从而得到更可靠的检测结果，常见的有模型推理阶段后处理的NMS中使用，当然有些算法例如RT-DETR和YOLOv10已经通过一些方法去掉NMS。</p>
+<p>下面是设定IOU阈值的一些常见用途：</p>
+<ol>
+<li><strong>过滤重叠检测结果：</strong> 当目标之间存在重叠时，设定较高的IOU阈值可以帮助排除其中一个目标，避免重复计数。</li>
+<li><strong>控制检测结果的数量：</strong> 调节IOU阈值可以影响最终的检测结果数量。较低的阈值会保留更多的检测结果，而较高的阈值则会过滤掉一些重叠度较高的检测结果，从而减少最终的检测结果数量。</li>
+<li>*<em>调整检测结果的</em>精度<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Precision：精度、准确率，表示检测结果中真正为fish的数量 占检测总数things的百分比。
+">[1]</span></a></sup><em>和</em>召回率<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Recall：召回率、查全率，表示检测结果中things中fish的数量，占所有fishs数量的百分比，大话解析：如果用渔网在池塘中捕鱼的例子看，召回率表示用网捕到的所有东西things(鱼和塑料瓶、石头、垃圾)中的鱼fish占池子中鱼总数fishs（未捕鱼之前的总数）的百分比，而精准度则可表示为，渔网中鱼fish占所有捕获东西总数things的百分比，若用足够密的网将池子里所有东西捞出，召回率将是1，而精准度将大大降低（因为网密就会捕捞大量的塑料瓶石头垃圾），召回率和准确率的计算公式中分子是一样的都是渔网中真正是鱼的个数即fish，区别是召回率的分母是所有的鱼即fishs，而准确率的分母是渔网中的所有东西things，如果想提高召回率就得用密度更大的网捕鱼*（降低检测的iou和置信度）*，但于此同时也会捕到更多的其他东西，即降低了精准度。有没有一种可能用一种渔网捕捞到鱼塘所有的鱼而没有一个其他东西，这样召回率就是1准确率也是1？从第一性原理看是不现实的，
+">[2]</span></a></sup><em>：</em>* 通过调节IOU阈值，可以在精确度（precision）和召回率（recall）之间进行权衡。较高的IOU阈值会提高检测结果的精确度，但可能会降低召回率，反之亦然。</li>
+<li><strong>适应特定场景的需求：</strong> 不同的应用场景可能对检测结果的质量有不同的要求，因此可以根据实际情况调整IOU阈值，以满足特定场景的需求。</li>
+</ol>
+<h2 id="概念补充："><a href="#概念补充：" class="headerlink" title="概念补充："></a>概念补充：</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Precision：精度、准确率，表示检测结果中真正为fish的数量 占检测总数things的百分比。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Recall：召回率、查全率，表示检测结果中things中fish的数量，占所有fishs数量的百分比，大话解析：如果用渔网在池塘中捕鱼的例子看，召回率表示用网捕到的所有东西things(鱼和塑料瓶、石头、垃圾)中的鱼fish占池子中鱼总数fishs（未捕鱼之前的总数）的百分比，而精准度则可表示为，渔网中鱼fish占所有捕获东西总数things的百分比，若用足够密的网将池子里所有东西捞出，召回率将是1，而精准度将大大降低（因为网密就会捕捞大量的塑料瓶石头垃圾），召回率和准确率的计算公式中分子是一样的都是渔网中真正是鱼的个数即fish，区别是召回率的分母是所有的鱼即fishs，而准确率的分母是渔网中的所有东西things，如果想提高召回率就得用密度更大的网捕鱼*（降低检测的iou和置信度）*，但于此同时也会捕到更多的其他东西，即降低了精准度。有没有一种可能用一种渔网捕捞到鱼塘所有的鱼而没有一个其他东西，这样召回率就是1准确率也是1？从第一性原理看是不现实的，<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">R-P曲线：精准率和召回率绘制出来的曲线，<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Accuracy：准确率，所有预测正确的样本数比上总预测样本数<a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">IOU在不同阶段的作用</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">bigfly</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2024-05-05 20:45:56</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2024/05/05/IOU/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2025/01/25/typora_free/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">最后一个免费版本Typora</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2024/03/05/C++%E4%B8%BB%E8%A6%81%E7%9A%84%E5%85%AD%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%AF%AD%E5%8F%A5/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">C++主要的六种类型语句</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOU"><span class="nav-number">1.</span> <span class="nav-text">IOU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81IOU%E5%9C%A8%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1、IOU在模型训练中的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81IOU%E5%9C%A8%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E6%97%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">2、IOU在模型应用时的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">概念补充：</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2025
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">bigfly</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    本站由 <span class="tooltip" data-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span> 提供部署服务
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

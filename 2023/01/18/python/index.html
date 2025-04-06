@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="bigfly">
+    
+    <title>
+        
+            python |
+        
+        BigflyのBlog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/head.jpg","favicon":"/images/logo.svg","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay hungry, Stay foolish.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":"欢迎大家评论留言："},"gitalk":{"github_id":"bigflya","github_admins":null,"repository":"blogcomment","client_id":"316266297ae09f8db378","client_secret":"463a369b390196542f5f4369654d53e8f00a75b8","proxy":null},"twikoo":{"env_id":"https://bigflya.zeabur.app","region":null,"version":"1.6.16"},"waline":{"server_url":null,"reaction":null,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/head.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               BigflyのBlog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/CodeModules"
+                            >
+                                CODE
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/CodeModules">CODE</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">python</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/head.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">bigfly</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-01-18 19:21:18</span>
+        <span class="mobile">2023-01-18 19:21</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-06-19 21:22:43</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>893 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="this-page-to-show-python-code-modules"><a href="#this-page-to-show-python-code-modules" class="headerlink" title="this page to show python code modules"></a>this page to show python code modules</h1><br>
+<br>
+
+<h2 id="matplotlab绘制损失-amp-精度图"><a href="#matplotlab绘制损失-amp-精度图" class="headerlink" title="matplotlab绘制损失&amp;精度图"></a>matplotlab绘制损失&amp;精度图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># plt 读取权重文件绘制图形</span></span><br><span class="line"><span class="comment"># 权重文件.txt 形式如下</span></span><br><span class="line"><span class="comment"># &#123;&quot;train_lr&quot;: 7.806273333612983e-07, &quot;train_min_lr&quot;: 7.806273333612983e-07, &quot;train_loss&quot;: 6.33559472168852, &quot;train_loss_scale&quot;: 8240.107382550335, &quot;train_weight_decay&quot;: 0.049999999999998955, &quot;train_grad_norm&quot;: Infinity, &quot;val_loss&quot;: 4.888336278969729, &quot;val_acc1&quot;: 1.480306729733424, &quot;val_acc5&quot;: 7.903780453929251, &quot;epoch&quot;: 0, &quot;n_parameters&quot;: 133832650&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读代码如下 jupyter 读取文件并绘制图形代码如下：</span></span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&#x27;data.txt&#x27;</span>)  <span class="comment"># 打开文档</span></span><br><span class="line">data = file.readlines()  <span class="comment"># 读取文档数据</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pluck</span>(<span class="params">lst, key</span>):</span><br><span class="line">    <span class="keyword">return</span> [x.get(key) <span class="keyword">for</span> x <span class="keyword">in</span> lst]</span><br><span class="line"></span><br><span class="line">d = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data : <span class="comment">#str to dict</span></span><br><span class="line">    c = json.loads(i)</span><br><span class="line">    d.append(c)</span><br><span class="line">    </span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(d[<span class="number">0</span>]))  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">7</span>,<span class="number">5</span>))       <span class="comment">#figsize是图片的大小</span></span><br><span class="line">ax1 = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># ax1是子图的名字</span></span><br><span class="line"><span class="comment"># “-”代表画的曲线是实线，可自行选择，label代表的是图例的名称，一般要在名称前面加一个u，如果名称是中文，会显示不出来，目前还不知道怎么解决。</span></span><br><span class="line">train_loss_line = plt.plot(pluck(d, <span class="string">&#x27;epoch&#x27;</span>),pluck(d, <span class="string">&#x27;train_loss&#x27;</span>),<span class="string">&#x27;r-&#x27;</span>, label = <span class="string">u&#x27;train_loss&#x27;</span>)</span><br><span class="line"><span class="comment">#显示图例</span></span><br><span class="line">val_loss_line = plt.plot(pluck(d, <span class="string">&#x27;epoch&#x27;</span>),pluck(d, <span class="string">&#x27;val_loss&#x27;</span>), <span class="string">&#x27;b-&#x27;</span>, label = <span class="string">u&#x27;val_loss&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">u&#x27;epoch&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">u&#x27;loss&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Compare loss for different epoch in training&#x27;</span>)</span><br><span class="line">plt.show()  </span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize = (<span class="number">7</span>,<span class="number">5</span>))       <span class="comment">#figsize是图片的大小</span></span><br><span class="line">ax2 = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># ax2是子图的名字</span></span><br><span class="line">p2 = plt.plot(pluck(d, <span class="string">&#x27;epoch&#x27;</span>),pluck(d, <span class="string">&#x27;val_acc1&#x27;</span>),<span class="string">&#x27;r-&#x27;</span>, label = <span class="string">u&#x27;Top-1&#x27;</span>)</span><br><span class="line">p3 = plt.plot(pluck(d, <span class="string">&#x27;epoch&#x27;</span>),pluck(d, <span class="string">&#x27;val_acc5&#x27;</span>), <span class="string">&#x27;b-&#x27;</span>, label = <span class="string">u&#x27;Top-5&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">u&#x27;epoch&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">u&#x27;accuracy&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Compare acc of Top-1 and Top-5&#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="批量视频数据提取帧"><a href="#批量视频数据提取帧" class="headerlink" title="批量视频数据提取帧"></a>批量视频数据提取帧</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数：</span></span><br><span class="line"><span class="comment">#   path：  要操作文件的根目录</span></span><br><span class="line"><span class="comment">#   list:   默认给 [] 即可</span></span><br><span class="line"><span class="comment"># 功能：</span></span><br><span class="line"><span class="comment">#   将path路径下的所有文件夹名称存入列表，并返回</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">traversalDir_FirstDir</span>(<span class="params">path, <span class="built_in">list</span></span>):</span><br><span class="line">    <span class="keyword">if</span> (os.path.exists(path)):</span><br><span class="line">        files = os.listdir(path)</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            m = os.path.join(path, file)</span><br><span class="line">            <span class="keyword">if</span> (os.path.isdir(m)):</span><br><span class="line">                h = os.path.split(m)</span><br><span class="line">                <span class="built_in">list</span>.append(h[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#   一个测试函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_traversalDir_FirstDir</span>():</span><br><span class="line">    <span class="built_in">dir</span> = <span class="string">&quot;C:\\Users\\Bigfly\\Desktop\\frame\\test&quot;</span></span><br><span class="line">    <span class="built_in">list</span> = traversalDir_FirstDir(<span class="built_in">dir</span>, [])</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数：</span></span><br><span class="line"><span class="comment">#   timerate: 视频截帧间隔</span></span><br><span class="line"><span class="comment">#   rootdir：  想要操作文件的根目录</span></span><br><span class="line"><span class="comment">#   video_subname:  视频文件的后缀名  例如  ‘.mp4’</span></span><br><span class="line"><span class="comment"># 函数功能：</span></span><br><span class="line"><span class="comment"># 通过时间间隔截取视频帧</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">video2frame</span>(<span class="params">timerate, rootdir, video_subname</span>):</span><br><span class="line">    n = <span class="number">0</span></span><br><span class="line">    path = os.path.dirname(rootdir)  <span class="comment"># 拿到视频所在文件夹的上一层文件夹</span></span><br><span class="line">    <span class="comment"># print(path)</span></span><br><span class="line">    <span class="comment"># if not os.path.join(path,&quot;save_frame&quot;):</span></span><br><span class="line">    os.mkdir(os.path.join(path, <span class="string">&quot;save_frame&quot;</span>))</span><br><span class="line">    save_frame_rootdir = os.path.join(path, <span class="string">&quot;save_frame&quot;</span>)  <span class="comment"># 创建一个保存帧的文件夹</span></span><br><span class="line">    <span class="comment"># print(save_frame_rootdir)</span></span><br><span class="line">    dirlist = traversalDir_FirstDir(rootdir, [])  <span class="comment"># 得到视频所在文件夹下，eg 第n组</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(dirlist)):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># if not os.path.join(save_frame_rootdir,dirlist[i]):</span></span><br><span class="line">        os.mkdir(os.path.join(save_frame_rootdir, dirlist[i]))</span><br><span class="line">        save_frame_subdir_i = os.path.join(save_frame_rootdir, dirlist[i])  <span class="comment"># 保存帧的子文件夹  eg 第n组</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> root, dirs, names <span class="keyword">in</span> os.walk(os.path.join(rootdir, dirlist[i])):  <span class="comment"># 开始在视频文件夹处理视频</span></span><br><span class="line">            <span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">                pre_name = os.path.splitext(name)[<span class="number">0</span>]</span><br><span class="line">                ext = os.path.splitext(name)[<span class="number">1</span>]</span><br><span class="line">                <span class="comment"># if not os.path.join(save_frame_subdir_i, pre_name):</span></span><br><span class="line">                os.mkdir(os.path.join(save_frame_subdir_i, pre_name))</span><br><span class="line">                save_frame_dir = os.path.join(save_frame_subdir_i, pre_name)</span><br><span class="line">                <span class="comment"># print(save_frame_dir)</span></span><br><span class="line">                <span class="keyword">if</span> ext == video_subname:</span><br><span class="line">                    <span class="comment"># print(ext)</span></span><br><span class="line">                    fromdir = os.path.join(root, name)  <span class="comment"># .mp4的绝对路径</span></span><br><span class="line">                    <span class="comment"># print(fromdir)</span></span><br><span class="line">                    cap = cv2.VideoCapture(fromdir)</span><br><span class="line">                    c = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> (<span class="literal">True</span>):</span><br><span class="line">                        ret, frame = cap.read()</span><br><span class="line">                        FPS = cap.get(<span class="number">5</span>)</span><br><span class="line">                        <span class="keyword">if</span> ret:</span><br><span class="line">                            frameRate = <span class="built_in">int</span>(FPS) * timerate</span><br><span class="line">                            <span class="comment"># print(frameRate)</span></span><br><span class="line">                            <span class="keyword">if</span> (c % frameRate == <span class="number">0</span>):</span><br><span class="line">                                <span class="comment"># print(frameRate)</span></span><br><span class="line">                                <span class="comment"># cv2.imshow(frame)</span></span><br><span class="line">                                st = save_frame_dir + <span class="built_in">str</span>(<span class="string">&quot;\\&quot;</span>) + <span class="built_in">str</span>(n).zfill(<span class="number">6</span>) + <span class="string">&#x27;.jpg&#x27;</span></span><br><span class="line">                                <span class="comment"># print(st)</span></span><br><span class="line">                                cv2.imwrite(st, frame)</span><br><span class="line"></span><br><span class="line">                                n += <span class="number">1</span></span><br><span class="line">                            c += <span class="number">1</span></span><br><span class="line">                            cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            <span class="built_in">print</span>(dirlist[i] + <span class="string">&quot;  &quot;</span> + pre_name + <span class="string">&quot;照度处理完毕&quot;</span>)</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line">                    cap.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    video2frame(<span class="number">2</span>, <span class="string">&quot;C:\\Users\\Bigfly\\Desktop\\frame\\test&quot;</span>, <span class="string">&#x27;.mp4&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/01/18/cppandc/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">cppandc</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/01/17/myago/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">2023年个人目标</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this-page-to-show-python-code-modules"><span class="nav-number">1.</span> <span class="nav-text">this page to show python code modules</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#matplotlab%E7%BB%98%E5%88%B6%E6%8D%9F%E5%A4%B1-amp-%E7%B2%BE%E5%BA%A6%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">matplotlab绘制损失&amp;精度图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E5%B8%A7"><span class="nav-number">1.2.</span> <span class="nav-text">批量视频数据提取帧</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2025
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">bigfly</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    本站由 <span class="tooltip" data-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span> 提供部署服务
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="bigfly">
+    
+    <title>
+        
+            机器视觉检测系统 |
+        
+        BigflyのBlog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/head.jpg","favicon":"/images/logo.svg","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay hungry, Stay foolish.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":"欢迎大家评论留言："},"gitalk":{"github_id":"bigflya","github_admins":null,"repository":"blogcomment","client_id":"316266297ae09f8db378","client_secret":"463a369b390196542f5f4369654d53e8f00a75b8","proxy":null},"twikoo":{"env_id":"https://bigflya.zeabur.app","region":null,"version":"1.6.16"},"waline":{"server_url":null,"reaction":null,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/head.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               BigflyのBlog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/CodeModules"
+                            >
+                                CODE
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/CodeModules">CODE</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">机器视觉检测系统</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/head.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">bigfly</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-04-22 19:26:11</span>
+        <span class="mobile">2023-04-22 19:26</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-22 19:26:11</span>
+    </span>
+    
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>9.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>33 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="一、视觉检测系统概述"><a href="#一、视觉检测系统概述" class="headerlink" title="一、视觉检测系统概述"></a>一、视觉检测系统概述</h1><h2 id="1、系统组成"><a href="#1、系统组成" class="headerlink" title="1、系统组成"></a>1、系统组成</h2><p><img lazyload="" alt="image-20230422084946271" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422084946271.png"></p>
+<h3 id="1-1光源"><a href="#1-1光源" class="headerlink" title="1.1光源"></a>1.1光源</h3><ul>
+<li>光源的功能是为目标照明， 便于相机成像。  </li>
+<li>光源可以是日光和人造光源。</li>
+<li>日光只有在白天日光能够辐射的地方存在， 并且在辐射的强度、 角度方面具有随机性， 通常不能满足相机成像对于目标照明的需求。</li>
+<li>人造光源包括白炽灯、 日光灯、 卤素灯等， 但是， 用在机器视觉检测系统照明用的光源几乎都是LED光源。</li>
+<li>根据目标成像的不同需求， LED光源有不同的结构、 尺寸、 颜色等。</li>
+</ul>
+<h3 id="1-2镜头"><a href="#1-2镜头" class="headerlink" title="1.2镜头"></a>1.2镜头</h3><ul>
+<li>镜头的功能是将目标景物汇聚到相机的图像传感器靶面。  </li>
+<li>根据目标成像的不同需求， 镜头有工业镜头、 远心镜头、 内窥镜等类。 </li>
+<li>每一种镜头有不同的规格， 包括焦距、 最小工作距离、 成像圆尺寸、光圈范围等。</li>
+</ul>
+<h3 id="1-3相机"><a href="#1-3相机" class="headerlink" title="1.3相机"></a>1.3相机</h3><ul>
+<li>相机的功能是将镜头汇聚的影像转换成数字图像。  </li>
+<li>根据目标成像的不同需求， 相机有线阵相机、 面阵相机、 3D相机、 接触式图像传感器等种类。</li>
+<li>每一种相机有不同的规格， 包括图像传感器靶面尺寸、 像元尺寸、 帧率、 行频、 曝光时间、光谱范围、 图像尺寸、 颜色、 数据传输接口种类等。</li>
+</ul>
+<h3 id="1-4图像抓拍"><a href="#1-4图像抓拍" class="headerlink" title="1.4图像抓拍"></a>1.4图像抓拍</h3><p><em><strong>图像抓拍的功能主要包括以下两部分：</strong></em></p>
+<ol>
+<li>在目标到来的时候， 启动光源照明， 触发相机拍摄目标图像。  </li>
+<li>在相机拍摄结束的时候， 关闭光源照明。</li>
+</ol>
+<h3 id="1-5图像处理"><a href="#1-5图像处理" class="headerlink" title="1.5图像处理"></a>1.5图像处理</h3><p><em><strong>图像处理的功能包括以下三个部分：</strong></em></p>
+<ol>
+<li>针对相机采集的目标图像，标记目标的轮廓。</li>
+<li>根据标记的目标轮廓， 计算目标的特征参数， 主要包括形状、 尺寸、 纹理、 颜色等。</li>
+<li>根据目标的特征参数， 确定目标的属性， 主要包括表面划痕、 凹坑、 凸起、 麻点、 污渍、 气泡、 裂纹等  。</li>
+</ol>
+<p><em><strong>图像处理系统主要包括以下四个部分：</strong></em></p>
+<ol>
+<li>图像处理硬件， 主要指的是计算机系统， 包括CPU、 GPU、 内存、 主板等。  </li>
+<li>图像处理软件， 主要指的是图像采集软件、 图像处理软件、 人机交互界面、 控制软件（光源控制、 相机抓拍控制、 物料分选控制等） 。</li>
+<li>图像处理语言， 主要采用C++、 C#等。  </li>
+<li>图像处理算法， 主要指的是实现图像处理功能的方法。 例如： Halcon机器视觉算法库。</li>
+</ol>
+<h3 id="1-6执行机构"><a href="#1-6执行机构" class="headerlink" title="1.6执行机构"></a>1.6执行机构</h3><p><em><strong>执行机构的功能是，根据图像处理的输出结果，在生产线上完成如下任务：</strong></em></p>
+<ol>
+<li>筛选不合格产品， 不需要区分缺陷的类型 。</li>
+<li>分选不合格产品， 需要区分缺陷的类型。 例如： 划伤， 压痕等。 </li>
+<li>分选产品等级。 例如： 优品， 良品， 合格品， 不合格品。</li>
+</ol>
+<h2 id="2、机器视觉与人类视觉的比较"><a href="#2、机器视觉与人类视觉的比较" class="headerlink" title="2、机器视觉与人类视觉的比较"></a>2、机器视觉与人类视觉的比较</h2><h3 id="2-1观察速度"><a href="#2-1观察速度" class="headerlink" title="2.1观察速度"></a>2.1观察速度</h3><p><em><strong>高速运动图像，例如：</strong></em></p>
+<ol>
+<li>生产线的传输速度可以达到每秒1-2米， 产品质量监测。</li>
+<li>运动员百米赛跑的速度可以达到每秒10米， 成绩排名。</li>
+</ol>
+<p><em><strong>低速运动图像， 例如：</strong></em>  </p>
+<ol>
+<li>植物生长过程监测。</li>
+</ol>
+<p><em><strong>间歇运动图像， 例如 ：</strong></em></p>
+<ol>
+<li>水坝决口监测、 山体滑坡监测。</li>
+</ol>
+<h3 id="2-2空间分辨能力"><a href="#2-2空间分辨能力" class="headerlink" title="2.2空间分辨能力"></a>2.2空间分辨能力</h3><p><em><strong>这里展示出电子显微镜、光学显微镜、人眼的空间分辨率：</strong></em></p>
+<ol>
+<li>电子显微镜的空间分辨力为0.2nm。  </li>
+<li>光学显微镜的空间分辨力为0.2um， 血细胞尺寸6-9.5um。  </li>
+<li>人眼的空间分辨力为0.1mm。</li>
+</ol>
+<blockquote>
+<p>思考：是不是分辨率越高越好？   </p>
+</blockquote>
+<p><em>答：并不是，分辨率越高，意味着对硬件的要求更高，比如处理器的处理速度，镜头的畸变参数和制造工艺、信号调理电路的可靠性（会不会丢数据） 等，选择相机分辨能力的标准主要的原则是在能满足对象检测要求的条件下留一定的裕量即可，而不是一味的追求高参数。</em></p>
+<h3 id="2-3-亮度分辨能力（色深）"><a href="#2-3-亮度分辨能力（色深）" class="headerlink" title="2.3 亮度分辨能力（色深）"></a>2.3 亮度分辨能力（色深）</h3><ol>
+<li>如果将亮度转化为图像中的256个灰度级的话， 人类视觉通常只能够分辨十几个灰度级。  </li>
+<li>而机器视觉目前至少可以将亮度转化为4096个灰度级， 并能够清楚地分辨每一个灰度级 。</li>
+</ol>
+<h3 id="2-4光谱范围"><a href="#2-4光谱范围" class="headerlink" title="2.4光谱范围"></a>2.4光谱范围</h3><p><em><strong>机器视觉除了在可见光环境下观测景物， 还可以在非可见光环境下观测景物， 并实现自动检测， 主要应用如下：</strong></em></p>
+<ol>
+<li>利用红外成像技术， 在医学方面实现人体成像， 获取人体体表温度分布， 用于疾病诊断。 在军事上用于夜间观察敌人的行踪。 在工业上用于观测钢水温度分布等。 例如： 热成像仪。</li>
+<li>利用X光成像技术， 在医学方面实现人体内脏器官、 骨骼成像， 用于疾病诊断。 在安检方面， 用于包括危险品的检查。 在产品质量检测方面， 用于轮胎内部帘线的缺陷检测。</li>
+<li>利用超声波成像技术， 在医学方面实现人体内脏器官成像， 用于疾病诊断。 在工业应用方面， 用于工件内部缺陷检测。</li>
+<li>利用微波成像技术， 在遥感方面， 通过卫星上安装的微波成像仪实现地球表面和云层的成像， 用于农作物受灾面积评估、 洪水受灾面积评估、 军事设施侦查、 测绘制图、 天气预报等。</li>
+</ol>
+<blockquote>
+<ul>
+<li>人类视觉只能在可见光条件下观测景物  。</li>
+</ul>
+</blockquote>
+<h3 id="2-5-观测距离"><a href="#2-5-观测距离" class="headerlink" title="2.5 观测距离"></a>2.5 观测距离</h3><ul>
+<li>今天的技术已经能够将相机发送到包括月球在内的任何可以到达的星球， 并将相机拍摄的图像传回到月球。 这意味着， 机器视觉的工作距离没有限制。</li>
+<li>而人类视觉只能够观测有限距离的目标。</li>
+</ul>
+<h3 id="2-6-观测环境"><a href="#2-6-观测环境" class="headerlink" title="2.6 观测环境"></a>2.6 观测环境</h3><ul>
+<li>机器视觉可以工作在对人体有害的环境。  </li>
+<li>主要包括毒气环境， 易爆环境， 粉尘环境， 有害辐射环境， 高温或者低温环境， 火灾环境等。</li>
+<li>在上述环境下， 可以利用机器视觉代替人类视觉。</li>
+<li>典型应用于机器人视觉。</li>
+</ul>
+<h3 id="2-7-观测结果量化"><a href="#2-7-观测结果量化" class="headerlink" title="2.7 观测结果量化"></a>2.7 观测结果量化</h3><ul>
+<li>人类视觉只能定性描述所观察目标的属性， 例如： 形状、 大小等。 </li>
+<li>机器视觉能够定量描述所观测目标的属性。</li>
+</ul>
+<h3 id="2-8-观测结果可靠性"><a href="#2-8-观测结果可靠性" class="headerlink" title="2.8 观测结果可靠性"></a>2.8 观测结果可靠性</h3><p>​		正常情况下， 人类视觉能够定性描述所观测目标的属性。但是， 由于情绪、 疲劳、 责任心等因素， 可能导致描述结果错误， 将不合格产品判别为合格产品， 这通常称为漏检。 例如： 将手机外壳上的划痕当做合格品。</p>
+<p>​		机器视觉按照规则处理图像， 可以避免人为因素的影响， 检测结果的可靠性远远高于人类视觉。</p>
+<h2 id="3、机器视觉与非电量电测系统的比较"><a href="#3、机器视觉与非电量电测系统的比较" class="headerlink" title="3、机器视觉与非电量电测系统的比较"></a>3、机器视觉与非电量电测系统的比较</h2><p><em><strong>机器视觉检测系统可以理解为是非电量电测系统的一种。 例如：</strong></em>  </p>
+<ol>
+<li>相机的核心是图像传感器。 对于可见光相机， 图像传感器的核心是光电传感器， 而光电传感器则是非电量电测系统中众多传感器中的一种。  </li>
+<li>超声波图像传感器的核心是压电晶体传感器， 而压电晶体传感器也是非电量电测系统中的一种传感器。</li>
+</ol>
+<p><em><strong>与非电量电测系统比较， 机器视觉系统具有如下一些特点：</strong></em></p>
+<ol>
+<li>关于数据类型， 如果非电量电测系统描述的对象为一维数据的话， 机器视觉检测系统描述的对象为二维数据， 或者三维数据。</li>
+<li>关于数据量， 图像传感器实际上是光电传感器阵列， 可以由数千万个光电传感器所组成。 <em>例如： 大恒图像MER-2000-19U3M/C-L面阵相机， 分辨率为2千万像素， 或用字节表示为20Mb。 每个像素为一个字节， 每个字节为8位或者12位二级制数。</em></li>
+<li>关于数据传输速率， 工业生产线的在线检测需要实时性。<em>例如： 大恒图像MER-2000-19U3M/C-L面阵相机， 分辨率为2千万个像素， 帧率为19.6帧/秒，则相机传输速率为20Mb× 19.6fps=392Mb/s， 即每秒传输大约4亿个字节的数据。这需要特殊的数据传输方式， 例如千兆网、 USB3.0、 cameralink等。</em></li>
+<li>关于器件的工作频率：<em>以内存为例， DDR4型内存的主流主频2400MHz， 最高可达4000MHz。以CPU为例， 最高主频可达3.0GHz。</em></li>
+<li>一体化 （集成化）：<em>指的是相机、 镜头、 光源、 图像处理器封装在一个壳体内， 输出的是图像处理结果。</em></li>
+</ol>
+<h2 id="4、关于机器视觉编程语言"><a href="#4、关于机器视觉编程语言" class="headerlink" title="4、关于机器视觉编程语言"></a>4、关于机器视觉编程语言</h2><ul>
+<li>在图像处理方面， 有图像处理算法库， 或者机器视觉算法库。  </li>
+<li>开源软件主要是Intel公司的Open CV。  </li>
+<li>商用软件主要是德国MVtec公司的HALCON， 美国COGNEX公司的Vision Pro等。 图像处理算法库的应用大大缩减的开发周期， 这是绝大多数机器视觉公司采用的方案。</li>
+<li>特别是这些商用软件可以直接驱动目前国际上流行的工业相机用来采集图像， 并且自带人机交互界面。 对于一些简单的应用场合， 不需要自己编写人机交互界面。</li>
+</ul>
+<p><img lazyload="" alt="image-20230422095353519" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422095353519.png"></p>
+<h1 id="二、LED光源"><a href="#二、LED光源" class="headerlink" title="二、LED光源"></a>二、LED光源</h1><h2 id="1、能级与能带"><a href="#1、能级与能带" class="headerlink" title="1、能级与能带"></a>1、能级与能带</h2><p><em>学习目的： 掌握半导体的概念， LED的材料是半导体。</em>  </p>
+<p><em>学习内容：</em></p>
+<ol>
+<li><em>原子的能级；</em></li>
+<li><em>固体的能带；</em></li>
+</ol>
+<h3 id="1-1原子的能级（基本概念）"><a href="#1-1原子的能级（基本概念）" class="headerlink" title="1.1原子的能级（基本概念）"></a>1.1原子的能级（基本概念）</h3><ul>
+<li>原子核外电子只能在特定的、 分立的轨道上运动， 各个轨道上的电子具有分立的能量， 这些能量值即为能级。</li>
+<li>在离原子核最近的地方旋转的电子的能级最低， 如图E1的能级最低。</li>
+</ul>
+<p><img lazyload="" alt="image-20230422104335106.png" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422104335106.png"></p>
+<center> 原子结构图</center>
+
+<p><img lazyload="" alt="image-20230422105133554" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422105133554.png"></p>
+<center>原子能级图</center>
+
+<h4 id="1-1-1-原子的定态、-基态、-激发态"><a href="#1-1-1-原子的定态、-基态、-激发态" class="headerlink" title="1.1.1 原子的定态、 基态、 激发态"></a>1.1.1 原子的定态、 基态、 激发态</h4><ul>
+<li>在量子力学中， 定态是微观粒子所处状态中的一种类型的状态。 处于定态的微观粒子在空间各处出现的几率不随时间变化， 而且具有确定的能量。</li>
+<li>在正常状态下， 电子处于最低能级， 电子在离核最近的轨道上运动的定态称为基态。 处于基态的电子称为基态电子。</li>
+<li>电子吸收能量后从基态跃迁到较高能级， 电子在较远的轨道上运动的定态称为激发态。 高于基态的状态依次称为第一、 第二激发态， 处于激发态的电子称为激发电子。</li>
+</ul>
+<h4 id="1-1-2-原子的能级跃迁"><a href="#1-1-2-原子的能级跃迁" class="headerlink" title="1.1.2 原子的能级跃迁"></a>1.1.2 原子的能级跃迁</h4><ol>
+<li>低能级的电子获取两个能级差的能量（电场、 热或光） 后可以跃迁至高能级。</li>
+<li>高能级的电子短暂停留之后， 再次回落到低能级并释放两个能级差的能量（热或光） 。</li>
+<li>两个能级间的能量差随着远离原子核而减小， 因此， 激发电子跃迁的能量随之减小。</li>
+<li>当电子被激发至最高能级时， 即能量E=0eV， 将不受原子核引力的束缚。</li>
+</ol>
+<h3 id="1-2-固体的能带"><a href="#1-2-固体的能带" class="headerlink" title="1.2 固体的能带"></a>1.2 固体的能带</h3><h4 id="1-2-1-能带的形成"><a href="#1-2-1-能带的形成" class="headerlink" title="1.2.1 能带的形成"></a>1.2.1 能带的形成</h4><p><img lazyload="" alt="image-20230422112503695" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422112340102.png"></p>
+<center>能带图</center>
+
+<ul>
+<li>能带理论是用量子力学的方法研究固体内部电子运动的理论。  </li>
+<li>在孤立原子中， 每个轨道上的电子都有一定的能级。</li>
+<li>固体是由原子排列组成， 原子之间的电子受邻近原子核的作用， 每个原子轨道上的电子能级被分裂成能级相近的轨道能带。</li>
+<li>能级越高， 能带越宽。  </li>
+<li>能带之间的空间称为带隙或能隙。 </li>
+<li>电子不能存在于带隙中。</li>
+</ul>
+<h4 id="1-2-2-能带的类型"><a href="#1-2-2-能带的类型" class="headerlink" title="1.2.2 能带的类型"></a>1.2.2 能带的类型</h4><p><em><strong>价带：</strong></em></p>
+<p><img lazyload="" alt="image-20230422112840181" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422112840181-1682134122813-11.png"></p>
+<center>原子模型图</center>
+
+<ul>
+<li>价电子， 原子最外层轨道上的电子。  </li>
+<li>价带由价电子组成， 为原子最外层电子轨道， 也是电子的最高能带。</li>
+<li>价带电子数为1到8个之间。</li>
+<li>当价带电子为8个时， 表示原子达到稳定状态。</li>
+</ul>
+<p><em><strong>导带 ：</strong></em></p>
+<p><img lazyload="" alt="image-20230422113335119" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422113335119.png"></p>
+<center>价带导带能隙的相对位置图</center>
+
+<ul>
+<li>导带， 不受原子核引力的电子组成的能带， 也是电子的最高能带。  </li>
+<li>价带能量低于导带。 </li>
+<li>价带中的电子被热或者光激发时， 可以跃入导带。</li>
+</ul>
+<h4 id="1-2-3-能带的重要性"><a href="#1-2-3-能带的重要性" class="headerlink" title="1.2.3 能带的重要性"></a>1.2.3 能带的重要性</h4><ul>
+<li>如果价带与导带之间存在较多的重叠， 意味着材料中存在大量的自由电子， 因此，该材料为良好的==导电体==。</li>
+<li>如果价带与导带之间存在较多的间隙， 意味着导带缺乏电子， 从而使材料无法导电， 因此，该材料为==绝缘体==。</li>
+<li>如果价带与导带之间存在轻微的分离， 通过提供少量的能量就可以使价带中的电子占据导带。 这意味着， 尽管这些材料通常是绝缘体， 但通过外部激励， 它们可以转化为导体。 因此这些材料被称为==半导体==。</li>
+</ul>
+<h4 id="1-2-4-不同材料的能带"><a href="#1-2-4-不同材料的能带" class="headerlink" title="1.2.4 不同材料的能带"></a>1.2.4 不同材料的能带</h4><p><img lazyload="" alt="image-20230422113931335" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422113931335.png"></p>
+<p><em><strong>导体：</strong></em></p>
+<ul>
+<li>导体的价带和导带之间无带隙， 存在重叠。 </li>
+<li>室温下可用的自由电子数量很大。 </li>
+<li>特点： 导电性能好， 具有很高的导电率。 </li>
+<li>实例： 导体主要指金属， 例如金、 铝、 银、 铜等。</li>
+</ul>
+<p><em><strong>半导体：</strong></em></p>
+<ul>
+<li>半导体的价带与导带之间存在较小的带隙。</li>
+<li>锗的带隙为 0.72eV  ；硅的带隙为 1.1eV  ；</li>
+<li>价带电子在较小的外部激发下可以跃迁到导带。</li>
+</ul>
+<p><em><strong>绝缘体：</strong></em></p>
+<ul>
+<li>绝缘体的价带与导带之间存在很大的带隙。 </li>
+<li>金刚石的带隙为 6-7eV。 </li>
+<li>难以通过外部激发使价带中的电子跃迁到导带。 </li>
+<li>特点： 不导电， 具有极低的导电率。 </li>
+<li>实例： 玻璃、 橡胶等。</li>
+</ul>
+<h4 id="1-2-5-固体能带小结"><a href="#1-2-5-固体能带小结" class="headerlink" title="1.2.5 固体能带小结"></a>1.2.5 固体能带小结</h4><ol>
+<li>导电体， 价带与导带之间无带隙；</li>
+<li>半导体， 价带与导带之间存在较小的带隙； ==LED为半导体器件。== </li>
+<li>绝缘体， 价带与导带之间存在较大的带隙。</li>
+</ol>
+<h2 id="2、-辐射吸收、-自发辐射、-受激辐射"><a href="#2、-辐射吸收、-自发辐射、-受激辐射" class="headerlink" title="2、 辐射吸收、 自发辐射、 受激辐射"></a>2、 辐射吸收、 自发辐射、 受激辐射</h2><ul>
+<li><p>学习目的： 掌握半导体自发辐射的概念， LED的发光机理是自发辐射。</p>
+</li>
+<li><p>学习内容：</p>
+<ol>
+<li>​	光子的概念  </li>
+<li>​	辐射或光的吸收  </li>
+<li>​    自发辐射</li>
+<li>​    受激辐射</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-1光子"><a href="#2-1光子" class="headerlink" title="2.1光子"></a>2.1光子</h3><ul>
+<li>光子（photon）,组成光束的基本粒子，光子的能量为 E =hv  ;其中h为普朗克常量，v为光的频率</li>
+<li>光子的概念由爱因斯坦提出。</li>
+<li>光子静止质量为零。</li>
+<li>光子以光速运动，具有能量、动量、质量。</li>
+</ul>
+<h3 id="2-2辐射或光的吸收"><a href="#2-2辐射或光的吸收" class="headerlink" title="2.2辐射或光的吸收"></a>2.2辐射或光的吸收</h3><p>​	<img lazyload="" alt="image-20230422115639841" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422115639841.png"></p>
+<p>​	</p>
+<ul>
+<li>吸收光子能量的过程称为辐射吸收。  </li>
+<li>电子吸收足够的光子能量， 从较低的能级跳到较高的能级。</li>
+<li>当电子吸收的能量等于两个能级的能量之差时， 电子从较低能级跃迁到较高能级。</li>
+<li>处于较高能级的电子称为激发电子。</li>
+</ul>
+<h3 id="2-3-自发辐射"><a href="#2-3-自发辐射" class="headerlink" title="2.3 自发辐射"></a>2.3 自发辐射</h3><p><em><strong>概念：</strong></em>被激发的电子在短时间停留之后， 以光的形式释放能量， 回到较低能级或基态， 这个过程称为自发辐射。</p>
+<p><em><strong>特性：</strong></em>自发辐射发射的光子并不完全沿着入射光子的方向流动， 具有随机性。自发辐射发射的光子能量与材料的能隙成正比。  </p>
+<p><em><strong>分类：</strong></em></p>
+<ol>
+<li>初始能量由光子提供， 称为光致发光， 例如黑暗中发光的材料。</li>
+<li>初始能量由化学反应提供， 称为化学发光， 例如发光棒。</li>
+<li>初始能量由电压提供， 称为电致发光， 例如LED。</li>
+<li>初始能量由声波引起， 称为声致发光。</li>
+<li>初始能量由加速电子击中目标， 称为阴极发光。</li>
+<li>初始能量由活的有机体引入， 如萤火虫， 称为生物发光。</li>
+</ol>
+<h3 id="2-4-受激辐射"><a href="#2-4-受激辐射" class="headerlink" title="2.4 受激辐射"></a>2.4 受激辐射</h3><p><em><strong>概念：</strong></em>处于激发态的电子被激发而发射光子， 同时下降到基态或较低能态的过程称为受激发射。</p>
+<p><em><strong>特性：</strong></em></p>
+<ul>
+<li>受激辐射不是一个自然过程， 而是一个人工过程。  </li>
+<li>入射光子迫使受激电子发射光子， 并落入较低能态或基态。</li>
+<li>入射光子的能量必须等于两个电子壳层之间的能量差。</li>
+<li>在受激发射过程中， 每个入射光子产生两个光子。</li>
+<li>在受激发射过程中发射的光子将沿着入射光子的相同方向传播。</li>
+<li>产生光的方法很多， 但受激发射是已知的唯一产生相干光（具有相同频率的光子束） 的方法。</li>
+</ul>
+<h2 id="3、PN结的发光原理"><a href="#3、PN结的发光原理" class="headerlink" title="3、PN结的发光原理"></a>3、PN结的发光原理</h2><p><em><strong>学习目的：</strong></em>掌握PN结的发光原理。</p>
+<p><em><strong>学习内容：</strong></em>本征半导体、N型半导体、P型半导体、半导体的PN结、半导体的带隙、PN结的发光原理。</p>
+<h3 id="3-1-本征半导体"><a href="#3-1-本征半导体" class="headerlink" title="3.1 本征半导体"></a>3.1 本征半导体</h3><p><em><strong>概念：</strong></em>本征半导体指的是完全不含杂质且无晶格缺陷的纯净半导体。  </p>
+<p><em><strong>特性：</strong></em></p>
+<ul>
+<li>在本征半导体中掺入某些微量元素作为杂质， 可使半导体的导电性发生显著变化。 掺入的杂质主要是三价或五价元素。</li>
+<li>掺入杂质的本征半导体称为杂质半导体 。</li>
+<li>最常用的半导体基础材料是硅， 硅原子的最外层有四个价电子。</li>
+<li>原子最外层电子数为8的时候， 性能最稳定， 这也是电子饱和状态。</li>
+<li>硅原子的最外层价电子与邻近的硅原子共享， 形成了八个电子的完整轨道， 称为共价键。</li>
+</ul>
+<p><img lazyload="" alt="image-20230422130316395" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422130316395.png"></p>
+<center>硅原子的结构</center>
+
+<h3 id="3-2-N型半导体"><a href="#3-2-N型半导体" class="headerlink" title="3.2 N型半导体"></a>3.2 N型半导体</h3><p><em><strong>构成：</strong></em>在本征半导体硅中掺入五价原子， 与四个硅原子形成共价键， 留下一个自由电子， 因此，五价原子称为施主（Donor）。</p>
+<p><em><strong>特性：</strong></em></p>
+<ul>
+<li>在室温下，原子中的外层电子在热激发下也会脱离壳层，成为自由电子，从而形成空穴，但是很快被其它自由电子填充。</li>
+<li>由于掺杂半导体中的自由电子数量远远大于空穴的数量， 称这种掺杂半导体为N型半导体（Negative, N）。</li>
+<li>五价原子主要包括： 砷( As )、 锑（Sb） 或磷（P） 等。  </li>
+<li>以锑原子作为掺杂原子为例，最外电子层有5个电子。 </li>
+<li>在硅原子中掺杂锑原子之后， 1个锑原子与4个硅原子形成共价键，并贡献1个电子进入导带成为自由电子。</li>
+</ul>
+<p><img lazyload="" alt="image-20230422131019365" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422131019365.png"></p>
+<center>硅原子Si中掺杂锑原子Sb</center>
+
+<h3 id="3-3-P型半导体"><a href="#3-3-P型半导体" class="headerlink" title="3.3 P型半导体"></a>3.3 P型半导体</h3><p><em><strong>构成：</strong></em>在本征半导体硅中掺入三价原子， 与四个硅原子形成共价键， 留下一个空穴， 需要电子填充才能够保持共价键稳定，因此，三价原子称为受主（Acceptor）。</p>
+<p><em><strong>特性：</strong></em></p>
+<ul>
+<li>在硅半导体中掺入三价原子后， 存在许多空穴， 其空穴的数量与掺杂三价原子数量有关。 </li>
+<li>由于掺入三价原子之后， 空穴称为半导体中的多数载流子， 空穴呈现正电子特征， 因此称这种掺杂半导体为P型半导体（Positive, P）。</li>
+<li>三价原子主要包括：铝（Al）、硼（B）或镓（Ga）等。</li>
+<li>以硼原子作为掺杂原子为例，最外电子层有3个电子。</li>
+<li>在硅原子中掺杂硼原子之后， 1个硼原子与4个硅原子形成共价键， 并留下1个空穴。</li>
+</ul>
+<p><img lazyload="" alt="image-20230422131514453" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422131514453.png"></p>
+<center>硅原子Si中掺杂硼原子B</center>
+
+<h3 id="3-4-半导体的PN结"><a href="#3-4-半导体的PN结" class="headerlink" title="3.4 半导体的PN结"></a>3.4 半导体的PN结</h3><p><img lazyload="" alt="image-20230422133805803" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422133805803.png"></p>
+<center>N区| PN结 | P区</center>
+
+<p><em><strong>构成：</strong></em>在硅材料中掺入三价原子形成P型区域， 掺入五价原子形成N型区域。在P型区域和N型区域的交界面，称为PN结。</p>
+<p><em><strong>特性：</strong></em></p>
+<ul>
+<li>N区中的多数载流子电子向P区扩散， 在PN结的P区一侧形成较高浓度的电子， 在PN结的N区一侧失去电子形成较高浓度的空穴， 形成内部电场。</li>
+<li>内部电场阻止电子从N区域向P区域进一步的扩散。</li>
+<li>当扩散终止， 在PN结形成势垒区， 或称耗尽层。</li>
+</ul>
+<p><em><strong>内部电场的电位差（零偏结电压  ）:</strong></em><br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.766ex;" xmlns="http://www.w3.org/2000/svg" width="17.868ex" height="5.841ex" role="img" focusable="false" viewBox="0 -1359 7897.7 2581.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D438" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"></path></g><g data-mml-node="mn" transform="translate(771,-150) scale(0.707)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g><g data-mml-node="mo" transform="translate(1452.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msub" transform="translate(2508.1,0)"><g data-mml-node="mi"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="mi" transform="translate(616,-150) scale(0.707)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g></g><g data-mml-node="mi" transform="translate(3671.9,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(3969.9,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mfrac" transform="translate(4569.9,0)"><g data-mml-node="mrow" transform="translate(220,676)"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mi" transform="translate(836,-150) scale(0.707)"><path data-c="1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"></path></g></g><g data-mml-node="msub" transform="translate(1471.5,0)"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mi" transform="translate(836,-152.7) scale(0.707)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g></g></g><g data-mml-node="msubsup" transform="translate(1145.6,-784.5)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,353.6) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(633,-293.8) scale(0.707)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g><rect width="3087.8" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></p>
+<ul>
+<li>V<del>T</del>为室温下26mV的热电压</li>
+<li>N<del>D</del>为N区域掺杂五价原子的浓度 </li>
+<li>N<del>A</del>为P区域掺杂三价原子的浓度 </li>
+<li>n<del>j</del>为半导体中本征原子的浓度</li>
+</ul>
+<p>通常在室温下：硅耗尽层的结电压约为 0.6-0.7 伏 ;锗耗尽层的结电压约为0.3-0.35 伏。  </p>
+<h3 id="3-5-半导体的带隙"><a href="#3-5-半导体的带隙" class="headerlink" title="3.5 半导体的带隙"></a>3.5 半导体的带隙</h3><p><img lazyload="" alt="image-20230422150406183" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422150406183.png"></p>
+<p>导带中的最小能量态和价带中的最大能量态在布里渊区分别用一定的晶体动量（k矢量）来表征。</p>
+<p><em><strong>半导体的直接带隙 :</strong></em></p>
+<ul>
+<li>导带最小值与价带最大值在波矢k空间中处于同一位置，如图k=0。</li>
+<li>被激发的价带电子垂直跃迁到导带，只需要吸收能量， 动量不变。</li>
+<li>导带电子瞬间停留后回落到价带，动量也不变，并直接发出光子。</li>
+<li>直接带隙半导体的最佳例子是砷化镓GaAs、 砷化铟InAs、 锑化铟InSb、 氮化镓GaN、氮化铟InN、 氧化锌ZnO、 硒化镉CdSe、 硫化锌ZnS。</li>
+</ul>
+<p>​			<em><strong>结论：</strong></em> 直接带隙半导体可以作为发光器件的材料。</p>
+<p><em><strong>半导体的间接带隙:</strong></em></p>
+<ul>
+<li>导带最小值和价带最大值在波矢k空间中处于不同位置。</li>
+<li>被激发的价带电子在跃迁过程中将能量释放给晶格，转化为声子，变成热能释放掉。</li>
+<li>间接带隙半导体的最佳例子是硅Si， 锗Ge， 碳C（金刚石），磷化镓GaP。</li>
+</ul>
+<p>​			<em><strong>结论：</strong></em> 间接带隙半导体不能作为发光器件的材料。</p>
+<h3 id="3-6-PN结的发光原理"><a href="#3-6-PN结的发光原理" class="headerlink" title="3.6 PN结的发光原理"></a>3.6 PN结的发光原理</h3><p><img lazyload="" alt="image-20230422152351709" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422152351709.png"></p>
+<center>PN结发光原理图</center>
+
+<ul>
+<li>如果在PN结外施加一个电压，使得在PN结内所形成的电场与PN结势垒电场方向相反， 从而使内部电子扩散平衡被打破，电子将继续扩散。</li>
+<li>电子从导带回落到价带，必须要耗散一部分能量，这种能量以光和热的形式散发。</li>
+<li>基于硅衬底的PN结， 属于间接带隙半导体， 回落电子通过发热来耗散能量。 </li>
+<li>基于磷砷化镓(GaAsP)或磷化镓(GaP)衬底的PN结，属于直接带隙半导体，回落电子通过发射光子来耗散能量。</li>
+</ul>
+<p>​			<em><strong>结论：</strong></em>直接带隙半导体材料是PN结发光的必要条件。  </p>
+<h2 id="4、-LED发光二极管"><a href="#4、-LED发光二极管" class="headerlink" title="4、 LED发光二极管"></a>4、 LED发光二极管</h2><p><em><strong>学习目的：</strong></em>了解LED芯片结构和LED结构，掌握LED的指向性和颜色。</p>
+<p><em><strong>学习内容：</strong></em>GaN基材料；LED芯片结构；LED结构；LED的指向性； LED的颜色； 白色LED；LED的供电。</p>
+<h3 id="4-1-GaN基材料"><a href="#4-1-GaN基材料" class="headerlink" title="4.1 GaN基材料"></a>4.1 GaN基材料</h3><p>氮化镓<strong>GaN基材料</strong>，属<strong>第三代半导体材料</strong>，具有禁带宽度大、热导率高、耐高温、 抗辐射、耐酸碱、 高强度和高硬度等特性，是现在世界上人们最感兴趣的半导体材料之一。GaN基材料在高亮度蓝、绿、紫和白光二极管，蓝、紫色激光器以及抗辐射、高温大功率微波器件等领域有着广泛的应用潜力和良好的市场前景。</p>
+<p>GaN基材料的衍生主要包括GaN 及其与氮化铟InN、氮化铝AlN 的合金，其禁带宽度覆盖整个可见光及紫外光谱范围，使得基于GaN基材料的LED 成为主流。</p>
+<h3 id="4-2-LED芯片结构"><a href="#4-2-LED芯片结构" class="headerlink" title="4.2 LED芯片结构"></a>4.2 LED芯片结构</h3><p><img lazyload="" alt="image-20230422154326676" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422154326676.png"></p>
+<center>蓝光LED芯片结构示意图， 1993年</center>
+
+<p><em><strong>蓝光LED芯片基本组成：</strong></em>p-氮化镓GaN层、有源层、 n-氮化镓GaN层、成核层、衬底</p>
+<h4 id="4-2-1-衬底功能"><a href="#4-2-1-衬底功能" class="headerlink" title="4.2.1 衬底功能"></a>4.2.1 衬底功能</h4><p>LED芯片是在衬底的基础上，通过外延生长形成的。</p>
+<p><img lazyload="" alt="image-20230422155041530" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422155041530.png"></p>
+<ul>
+<li>衬底是外延层生长的基板。</li>
+<li>衬底起到支撑和固定外延层的作用。</li>
+<li>衬底与外延层的特性配合要求严格， 直接影响外延层的生长乃至芯片的品质。</li>
+<li>衬底材料主要有蓝宝石α-Al2O3、硅Si、碳化硅SiC，较常用的是蓝宝石。</li>
+<li>蓝宝石衬底 Sapphire Substrate</li>
+</ul>
+<h4 id="4-2-2-衬底材料"><a href="#4-2-2-衬底材料" class="headerlink" title="4.2.2 衬底材料"></a>4.2.2 衬底材料</h4><p><em><strong>蓝宝石Al2O3</strong></em>，最早用于GaN外延的衬底材料、工艺最成熟。<em>缺点</em>是晶格失配导致位错密度高，大功率LED存在散热问题。蓝宝石占据了*90%*以上的衬底市场份额， 是目前市场上的主流技术路线。</p>
+<p><strong>碳化硅SiC衬底</strong>，导热性良好，且其与GaN间的晶格失配和热失配也较小，非常适合于制造高温、高频、大功率电子器。SiC衬底的<em>价格昂贵</em>， 因其性能优异，占据着高端市场。  </p>
+<p><strong>硅Si衬底</strong>，生长工艺成熟、导致成本低，导电性和导热性好。缺点：在Si衬底上制备GaN单晶薄膜质量不如蓝宝石，以此制造高质量LED面临许多难题。剑桥大学C. J. Humphreys教授是国际上Si基LED器件研究的先驱之一。</p>
+<h4 id="4-2-3-成核层"><a href="#4-2-3-成核层" class="headerlink" title="4.2.3 成核层"></a>4.2.3 成核层</h4><p>成核层是用来阻断来自衬底的缺陷沿着生长方向向上传播，从而提高后续生长的结晶质量。因此，成核层也称缓冲层Buffer Layer。</p>
+<p><img lazyload="" alt="image-20230422155859046" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422155859046.png"></p>
+<center>成核层生长过程金属有机化学气相沉积法MOCVD</center>
+
+<p>成核层是在衬底表面生长而成，材料是氮化镓GaN；厚度在100nm左右；温度约为550° C。</p>
+<h4 id="4-2-4-n-GaN层"><a href="#4-2-4-n-GaN层" class="headerlink" title="4.2.4 n-GaN层"></a>4.2.4 n-GaN层</h4><p><img lazyload="" alt="image-20230422155041530" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422155041530.png"></p>
+<p><strong>n-GaN 层有如下作用：</strong></p>
+<ul>
+<li>与p-GaN组成PN结外层，并以此形成<em>引出线</em>；</li>
+<li>起到缓冲层的作用，提高后续生长质量；</li>
+<li>向有源区提供充足的电子；</li>
+<li>n-GaN层掺入的杂质为Si  ，厚度约为1-2 um ，生长温度约为1050° C</li>
+</ul>
+<h4 id="4-2-5有源层"><a href="#4-2-5有源层" class="headerlink" title="4.2.5有源层"></a>4.2.5有源层</h4><ul>
+<li>有源层是辐射光子的区域。是氮化铟镓InGaN/氮化铝镓AlGaN双异质结。</li>
+<li>较窄的带隙材料InGaN被两个较宽的带隙材料AlGaN所夹，形成量子阱。</li>
+<li>双异质结构设计有助于最大限度地提高LED器件的发光效率。  </li>
+<li>异质结由两层以上不同的半导体材料薄膜依次沉积在同一基座上形成</li>
+<li>这些材料具有不同的能带隙。异质结构的二极管特性非常接近理想二极管。调节各个材料层的厚度和能带隙， 能够改善LED性能。</li>
+</ul>
+<h4 id="4-2-6-p-GaN层"><a href="#4-2-6-p-GaN层" class="headerlink" title="4.2.6 p-GaN层"></a>4.2.6 p-GaN层</h4><p><strong>p-GaN层有如下作用：</strong></p>
+<ul>
+<li>与n-GaN层组成PN结外层， 并以此形成引出线；  </li>
+<li>向有源层提供空穴。</li>
+</ul>
+<p>n-GaN层掺杂技术比较简单，主要掺杂Si，由于存在氮空位, 使得N型本底载流子浓度范围较高。p-GaN层要实现对应于n-GaN层的高浓度掺杂非常困难。</p>
+<h3 id="4-3-LED结构"><a href="#4-3-LED结构" class="headerlink" title="4.3 LED结构"></a>4.3 LED结构</h3><h4 id="4-3-1-圆顶型LED"><a href="#4-3-1-圆顶型LED" class="headerlink" title="4.3.1 圆顶型LED"></a>4.3.1 圆顶型LED</h4><p><img lazyload="" alt="image-20230422170235304" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422170235304.png"></p>
+<center>圆顶型LED结构示意图</center>
+
+<p>LED芯片固定在LED阴极的一个小反射腔（Reflective cavity）中。LED芯片的阳极通过连接线（Bond wire）连接到LED的阳极。圆顶形壳体由塑料或环氧树脂制成，将所有部件固定在一起。LED芯片发出的光通过反射腔， 反射到LED的上半部分，通过圆顶内腔聚焦， 并通过壳体辐射到LED的前方。</p>
+<p><img lazyload="" alt="image-20230422170905558" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422170905558.png"></p>
+<center>圆顶型LED出光分布图</center>
+
+<p>如上图所示，左上结构图；右上光照图片；左下亮度径向分布；右下亮度三维分布。</p>
+<p><em><strong>结论：</strong></em>在中心出光区域之外还有一个环形出光区域， 其亮度较弱。</p>
+<h4 id="4-3-2-贴片型"><a href="#4-3-2-贴片型" class="headerlink" title="4.3.2 贴片型"></a>4.3.2 贴片型</h4><p><img lazyload="" alt="image-20230422171235720" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422171235720.png"></p>
+<center>贴片型LED结构示意图</center>
+
+<p>贴片式（surface mounted device， SMD）该结构直接粘贴在印刷线路板上。外壳可以作为散热片。结构紧凑。荧光层 Phosphor layer。</p>
+<h4 id="4-3-3-COB型"><a href="#4-3-3-COB型" class="headerlink" title="4.3.3 COB型"></a>4.3.3 COB型</h4><p><img lazyload="" alt="image-20230422171545495" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422171545495.png"></p>
+<center>板上芯片型LED结构示意图</center>
+
+<p>板上芯片（chip on board， COB）用热粘接剂直接连接LED芯片到印刷电路板上。由于半导体和电路板之间直接接触， 因此比使用贴片式LED的电路板可以更好地耗散功耗。</p>
+<h4 id="4-3-4-三种类型比较"><a href="#4-3-4-三种类型比较" class="headerlink" title="4.3.4 三种类型比较"></a>4.3.4 三种类型比较</h4><p><img lazyload="" alt="image-20230422171724139" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422171724139.png"></p>
+<p>如上图所示，在10×10mm线路板上可以布置LED的数量比较。圆顶型LED： 9个贴片型LED：40个板上芯片型LED：342个  。</p>
+<h3 id="4-4-LED的指向性"><a href="#4-4-LED的指向性" class="headerlink" title="4.4 LED的指向性"></a>4.4 LED的指向性</h3><p>下图表示普通LED光出射强度分布。指向性指的是LED光出射角度。𝒑𝒆表示光出射强度峰值对应的角度；</p>
+<p><img lazyload="" alt="image-20230422172120077" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422172120077.png"></p>
+<p>下图给出了日本日亚化学工业株式会社（NiChia） 生产的NF2W757HT-F1型贴片式LED光出射强度分布与指向角的关系， 可以看出<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="10.26ex" height="2.453ex" role="img" focusable="false" viewBox="0 -918.6 4534.8 1084.1"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="398" d="M56 340Q56 423 86 494T164 610T270 680T388 705Q521 705 621 601T722 341Q722 260 693 191T617 75T510 4T388 -22T267 3T160 74T85 189T56 340ZM610 339Q610 428 590 495T535 598T463 651T384 668Q332 668 289 638T221 566Q168 485 168 339Q168 274 176 235Q189 158 228 105T324 28Q356 16 388 16Q415 16 442 24T501 54T555 111T594 205T610 339ZM223 263V422H263V388H514V422H554V263H514V297H263V263H223Z"></path></g><g data-mml-node="TeXAtom" transform="translate(811,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)"></path><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" transform="translate(778,0)"></path></g></g></g><g data-mml-node="mo" transform="translate(2042.5,0)"><path data-c="2248" d="M55 319Q55 360 72 393T114 444T163 472T205 482Q207 482 213 482T223 483Q262 483 296 468T393 413L443 381Q502 346 553 346Q609 346 649 375T694 454Q694 465 698 474T708 483Q722 483 722 452Q722 386 675 338T555 289Q514 289 468 310T388 357T308 404T224 426Q164 426 125 393T83 318Q81 289 69 289Q55 289 55 319ZM55 85Q55 126 72 159T114 210T163 238T205 248Q207 248 213 248T223 249Q262 249 296 234T393 179L443 147Q502 112 553 112Q609 112 649 141T694 220Q694 249 708 249T722 217Q722 153 675 104T555 55Q514 55 468 76T388 123T308 170T224 192Q164 192 125 159T83 84Q80 55 69 55Q55 55 55 85Z"></path></g><g data-mml-node="msup" transform="translate(3098.2,0)"><g data-mml-node="mn"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="TeXAtom" transform="translate(1033,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="B0" d="M147 628Q147 669 179 692T244 715Q298 715 325 689T352 629Q352 592 323 567T249 542Q202 542 175 567T147 628ZM313 628Q313 660 300 669T259 678H253Q248 678 242 678T234 679Q217 679 207 674T192 659T188 644T187 629Q187 600 198 590Q210 579 250 579H265Q279 579 288 581T305 595T313 628Z"></path></g></g></g></g></g></svg></mjx-container></p>
+<p><img lazyload="" alt="image-20230422172831619" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422172831619.png"></p>
+<h3 id="4-5-LED的颜色"><a href="#4-5-LED的颜色" class="headerlink" title="4.5 LED的颜色"></a>4.5 LED的颜色</h3><ul>
+<li>LED发出光的颜色是由波长决定的。</li>
+<li>光的波长取决于PN结处半导体材料的带隙宽度。</li>
+<li>带隙的宽度与复合材料的化合物有关。</li>
+<li>光的强度取决于通过二极管施加的功率。</li>
+</ul>
+<p><img lazyload="" alt="image-20230422172537175" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422172537175.png"></p>
+<h3 id="4-6-白色LED"><a href="#4-6-白色LED" class="headerlink" title="4.6 白色LED"></a>4.6 白色LED</h3><p>LED不能直接发出白光， 而是通过某些技术产生白光， 主要技术有以下三种：波长转换、颜色混合、同质外延硒化锌。</p>
+<h4 id="4-6-1-波长转换"><a href="#4-6-1-波长转换" class="headerlink" title="4.6.1 波长转换"></a>4.6.1 波长转换</h4><p><strong>（1）蓝色LED和黄色荧光粉：</strong>  </p>
+<p>LED发出蓝色辐射激发黄色荧光粉。蓝光和黄光的混合呈现出近似的白光。这种方法是产生白光最便宜的方法。</p>
+<p><img lazyload="" alt="image-20230422173905863" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422173905863.png"></p>
+<p><img lazyload="" alt="image-20230422182001265" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422182001265.png"></p>
+<center>（a） 传统的球冠型涂层结构 （b） 平面保形荧光粉层结构
+<br>（c） 悬空荧光粉涂层结构 （d） 自适应荧光粉涂层结构 </center>
+
+<p><strong>（2）蓝色LED和多色荧光粉：</strong></p>
+<p>LED发出蓝色辐射激发多种颜色荧光粉。蓝光和多种颜色的光混合呈现出近似的白光， 效果优于前一种。成本偏高。</p>
+<p><strong>（3）紫外LED和RGB荧光粉：</strong></p>
+<p>LED发出紫外光。紫外光激发红色、 绿色、 蓝色荧光粉发出红光、 绿光和蓝光。红光、 绿光和蓝光的混合呈现近似白光， 效果优于前两种。</p>
+<p><strong>（3）蓝色LED和量子点  ：</strong></p>
+<p>LED发出蓝光。蓝光激发LED顶部的量子点产生白光。 量子点的材料为镉或硒。其光谱与紫光激发RGB荧光粉的光谱近似。</p>
+<h4 id="4-6-2-彩色LED混合"><a href="#4-6-2-彩色LED混合" class="headerlink" title="4.6.2 彩色LED混合"></a>4.6.2 彩色LED混合</h4><p>将发出红光、绿光和蓝光的LED装在一个壳体内，通过调节每个LED发出光的强度， 来获得混合色。也可以采用红光、绿光、蓝光和黄光进行混合。</p>
+<h4 id="4-6-3同质外延硒化锌"><a href="#4-6-3同质外延硒化锌" class="headerlink" title="4.6.3同质外延硒化锌"></a>4.6.3同质外延硒化锌</h4><p>通过在硒化锌（ZnSe） 衬底上生长蓝色LED外延层而产生。在有源区发出483nm的蓝光。在衬底发出595nm的黄光。蓝光和黄光合成为白光。</p>
+<h3 id="4-7-LED的供电"><a href="#4-7-LED的供电" class="headerlink" title="4.7 LED的供电"></a>4.7 LED的供电</h3><p>普通硅或锗二极管的管压降差异性不大， 而LED的管压降差异很大； LED的工作电流差异性很大。 LED正向压降VF取决于半导体化合物和正向偏压LED电流。 准确的电压降当然取决于制造商， 因为使用了不同的掺杂材料和波长。</p>
+<p>LED不可以直接与电源连接， 必须通过串联一个电阻， 以免因过流而烧坏。串联的LED必须统一规格，以确保发光亮度一致。通过LED的电流不允许超过额定电流。</p>
+<p><img lazyload="" alt="image-20230422185001808" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422185001808.png"></p>
+<p>如上图所示PWM驱动是目前调整LED光源亮度的主要方式。调整光源亮度的设备称为光源控制器。</p>
+<h2 id="5-、光源相关术语"><a href="#5-、光源相关术语" class="headerlink" title="5 、光源相关术语"></a>5 、光源相关术语</h2><h3 id="5-1-黑体"><a href="#5-1-黑体" class="headerlink" title="5.1 黑体"></a>5.1 黑体</h3><p><strong>概念：</strong>黑体是一个理想化的物体， 能够吸收全部电磁辐射， 没有反射和透射。  黑体对于任何波长的电磁波的吸收系数为1， 透射系数为0。  </p>
+<p>普朗克黑体电磁波辐射定律， 黑体辐射率与波长的关系为：<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.326ex;" xmlns="http://www.w3.org/2000/svg" width="25.763ex" height="5.425ex" role="img" focusable="false" viewBox="0 -1370 11387 2398.1"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D707" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path></g><g data-mml-node="mi" transform="translate(636,-150) scale(0.707)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g></g><g data-mml-node="mo" transform="translate(1098.2,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1487.2,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mo" transform="translate(2070.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(2514.9,0)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mo" transform="translate(3218.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(3885.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(4941.5,0)"><g data-mml-node="mrow" transform="translate(220,676)"><g data-mml-node="mn"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path></g><g data-mml-node="mi" transform="translate(500,0)"><path data-c="1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path></g><g data-mml-node="mi" transform="translate(1070,0)"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path></g><g data-mml-node="mi" transform="translate(1646,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g></g><g data-mml-node="msup" transform="translate(749.7,-719.9)"><g data-mml-node="mi"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mn" transform="translate(616,289) scale(0.707)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></g></g><rect width="2279" height="60" x="120" y="220"></rect></g><g data-mml-node="mfrac" transform="translate(7460.5,0)"><g data-mml-node="mn" transform="translate(1713.3,676)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mrow" transform="translate(220,-946.1)"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mfrac" transform="translate(499,360.5) scale(0.707)"><g data-mml-node="mrow" transform="translate(502.5,394) scale(0.707)"><g data-mml-node="mi"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path></g><g data-mml-node="mi" transform="translate(576,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-345) scale(0.707)"><g data-mml-node="mi"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mi" transform="translate(583,0)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g><g data-mml-node="mi" transform="translate(1104,0)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g></g><rect width="1478.4" height="60" x="120" y="220"></rect></g></g><g data-mml-node="mo" transform="translate(1986.3,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(2986.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g><rect width="3686.6" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></p>
+<p>k： 波尔茨曼常数， 焦耳/开尔文（J/K）  </p>
+<p>T： 黑体温度， 开尔文（K）  </p>
+<p>h： 普朗克常数， 焦耳∙秒（J∙s）  </p>
+<p>c： 光速， 米/秒（m/s）  </p>
+<p>辐射率是指衡量物体表面以辐射的形式释放能量相对强弱的能力。物体的辐射率等于物体在一定温度下辐射的能量与同一温度下黑体辐射能量之比。黑体的辐射率等于1， 其他物体的辐射率介于0和1之间。</p>
+<p><img lazyload="" alt="image-20230422190629883" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422190629883.png"></p>
+<center>不同温度下黑体辐射率与波长的关系</center>
+
+<h3 id="5-2-色温"><a href="#5-2-色温" class="headerlink" title="5.2 色温"></a>5.2 色温</h3><p>色温是以温度的数值来表示光源的颜色特征。加热标准黑体， 其表面颜色变化顺序为深红、浅红、橙色、白色、蓝色。  当某种光源的色度与某一温度下黑体的色度相同时，将该色度下黑体的绝对温度作为该光源的色温。色温的单位为开尔文（K） </p>
+<p><img lazyload="" alt="image-20230422200749982" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422200749982.png"></p>
+<h3 id="5-3-显色指数"><a href="#5-3-显色指数" class="headerlink" title="5.3 显色指数"></a>5.3 显色指数</h3><p>显色指数（CRI 或Ra） 表示物体或其周围环境的颜色在特定光源下呈现的自然程度。借助于显色指数， 可以比较不同光源的光质。显色指数的值介于1和100之间， 没有单位。显色指数与光谱有关， 光谱越宽， 颜色越真实。自然光的CRI为100。 白炽灯和卤素灯的最大显色指数也为100。 LED的CRI为60-98节能灯为80-89， 荧光灯为60-90， 汞蒸气灯45-50， 钠蒸汽灯30-40。</p>
+<p><img lazyload="" alt="image-20230422202847506" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422202847506.png"></p>
+<center>不同显色指数的成像效果比较</center>
+
+
+<p><img lazyload="" alt="image-20230422203801087" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422203801087.png"></p>
+<center>不同光源的光谱分布</center>
+
+<h3 id="5-4-色度"><a href="#5-4-色度" class="headerlink" title="5.4 色度"></a>5.4 色度</h3><p><strong>色度（chromaticity）</strong> 反映的是色调和饱和度， 与亮度无关。人眼锥细胞由三个细胞组成， 分别感受波长为420-440nm、 530-540nm、 560-580nm的可见光。三个波段的可见光近似对应于蓝光、 绿光和红光，其合成反映了色度。国际照明委员会 CIE 建立了与人眼对应的标准观察者颜色匹配函数， 用来描述色度。</p>
+<p><strong>色度图</strong>包含了一般人眼可见的所有颜色。舌形图的外边界线被称为光谱轨迹， 是用纳米波长度量的单色光， 这些光是饱和度最大的颜色。饱和度最小的颜色位于舌形图的中心， 表现为白色。如果在色度图上选择任何两个颜色点， 则可以通过混合这两个颜色来形成两点之间直线上的所有颜色。色度图中的任何一点颜色可以用坐标（x， y） 来表示。</p>
+<p><img lazyload="" alt="image-20230422204413298" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422204413298.png"></p>
+<center>CIE 1931颜色空间色度图</center>
+
+
+<p><img lazyload="" alt="image-20230422204837239" data-src="https://blogimg-1258792233.cos.ap-beijing.myqcloud.com/image-20230422204837239.png"></p>
+<center>不同显色指数的白色LED色度坐标与电流的关系（色温5000-6500K）</center>
+
+<h3 id="5-5-光谱发光效率"><a href="#5-5-光谱发光效率" class="headerlink" title="5.5 光谱发光效率"></a>5.5 光谱发光效率</h3><p>光谱发光效率（Spectral luminous efficiency）是指人眼对不同频率光的反应灵敏度。实验表明： 正常视力的观察者， 明视觉时对频率550nm绿色光最敏感， 其发光效率定义为1，其它可见光的光谱发光效率小于1； 暗视觉时对490nm青蓝光最为敏感。 相对光谱发光效率， 某频率光的光谱发光效率与550nm绿光的光谱发光效率的比值。</p>
+<h3 id="5-6-光谱密度"><a href="#5-6-光谱密度" class="headerlink" title="5.6 光谱密度"></a>5.6 光谱密度</h3><p>光谱密度（spectral concentration），表示单位波长区间内辐射能的大小。<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.579ex;" xmlns="http://www.w3.org/2000/svg" width="48.107ex" height="4.679ex" role="img" focusable="false" viewBox="0 -1370 21263.1 2068"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g><g data-mml-node="mi" transform="translate(629,-150) scale(0.707)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g><g data-mml-node="mo" transform="translate(1008.5,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1397.5,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mo" transform="translate(1980.5,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(2647.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(3703.1,0)"><g data-mml-node="mrow" transform="translate(220,676)"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="msub" transform="translate(520,0)"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g><g data-mml-node="mi" transform="translate(629,-150) scale(0.707)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g></g><g data-mml-node="mrow" transform="translate(432.8,-686)"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(520,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g></g><rect width="1728.5" height="60" x="120" y="220"></rect></g><g data-mml-node="mi" transform="translate(5671.6,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">其</text></g><g data-mml-node="mi" transform="translate(6671.6,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">中</text></g><g data-mml-node="msub" transform="translate(7671.6,0)"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g><g data-mml-node="mi" transform="translate(629,-150) scale(0.707)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g><g data-mml-node="mi" transform="translate(8680.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">为</text></g><g data-mml-node="mi" transform="translate(9680.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(10680.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(11680.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">辐</text></g><g data-mml-node="mi" transform="translate(12680.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">射</text></g><g data-mml-node="mi" transform="translate(13680.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">能</text></g><g data-mml-node="mi" transform="translate(14680.1,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="mi" transform="translate(15680.1,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mi" transform="translate(16263.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">为</text></g><g data-mml-node="mi" transform="translate(17263.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(18263.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(19263.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">波</text></g><g data-mml-node="mi" transform="translate(20263.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">长</text></g></g></g></svg></mjx-container></p>
+<h3 id="5-7-辐射通量"><a href="#5-7-辐射通量" class="headerlink" title="5.7 辐射通量"></a>5.7 辐射通量</h3><p>辐射通量（Radiant flux），单位时间内通过某一截面的辐射能。辐射形式包括发射、传播，或接收。 辐射功率的单位是瓦特(W)</p>
+<h3 id="5-8-光通量"><a href="#5-8-光通量" class="headerlink" title="5.8 光通量"></a>5.8 光通量</h3><p>光通量（luminous flux） 指人眼所能感觉到的辐射通量， 单位为流明<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.948ex;" xmlns="http://www.w3.org/2000/svg" width="21.379ex" height="5.027ex" role="img" focusable="false" viewBox="0 -1361 9449.5 2222"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g><g data-mml-node="mo" transform="translate(873.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msub" transform="translate(1929.6,0)"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g><g data-mml-node="mi" transform="translate(882,-150) scale(0.707)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(3649.1,0) translate(0 1)"><path data-c="222B" d="M114 -798Q132 -824 165 -824H167Q195 -824 223 -764T275 -600T320 -391T362 -164Q365 -143 367 -133Q439 292 523 655T645 1127Q651 1145 655 1157T672 1201T699 1257T733 1306T777 1346T828 1360Q884 1360 912 1325T944 1245Q944 1220 932 1205T909 1186T887 1183Q866 1183 849 1198T832 1239Q832 1287 885 1296L882 1300Q879 1303 874 1307T866 1313Q851 1323 833 1323Q819 1323 807 1311T775 1255T736 1139T689 936T633 628Q574 293 510 -5T410 -437T355 -629Q278 -862 165 -862Q125 -862 92 -831T55 -746Q55 -711 74 -698T112 -685Q133 -685 150 -700T167 -741Q167 -789 114 -798Z"></path></g><g data-mml-node="mi" transform="translate(4759.7,0)"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="mo" transform="translate(5528.7,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(5917.7,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mo" transform="translate(6500.7,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="msub" transform="translate(6889.7,0)"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g><g data-mml-node="TeXAtom" transform="translate(629,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(466,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(8310.5,0)"><g data-mml-node="mi"><path data-c="64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z"></path></g></g><g data-mml-node="mi" transform="translate(8866.5,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g></g></g></svg></mjx-container></p>
+<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="48.092ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 21256.8 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">其</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">中</text></g><g data-mml-node="msub" transform="translate(2000,0)"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g><g data-mml-node="mi" transform="translate(882,-150) scale(0.707)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mi" transform="translate(3552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">为</text></g><g data-mml-node="mi" transform="translate(4552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(5552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">谱</text></g><g data-mml-node="mi" transform="translate(6552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">发</text></g><g data-mml-node="mi" transform="translate(7552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(8552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">效</text></g><g data-mml-node="mi" transform="translate(9552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">率</text></g><g data-mml-node="mi" transform="translate(10552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">最</text></g><g data-mml-node="mi" transform="translate(11552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">大</text></g><g data-mml-node="mi" transform="translate(12552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">值</text></g><g data-mml-node="mi" transform="translate(13552.8,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="mi" transform="translate(14552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">等</text></g><g data-mml-node="mi" transform="translate(15552.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">于</text></g><g data-mml-node="mn" transform="translate(16552.8,0)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)"></path><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(1000,0)"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1500,0)"></path></g><g data-mml-node="mi" transform="translate(18552.8,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(19430.8,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(19930.8,0)"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path></g><g data-mml-node="mo" transform="translate(20978.8,0)"><path data-c="3B" d="M78 370Q78 394 95 412T138 430Q162 430 180 414T199 371Q199 346 182 328T139 310T96 327T78 370ZM78 60Q78 85 94 103T137 121Q202 121 202 8Q202 -44 183 -94T144 -169T118 -194Q115 -194 106 -186T95 -174Q94 -171 107 -155T137 -107T160 -38Q161 -32 162 -22T165 -4T165 4Q165 5 161 4T142 0Q110 0 94 18T78 60Z"></path></g></g></g></svg></mjx-container></p>
+<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="45.104ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 19936 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="mo" transform="translate(769,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1158,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mo" transform="translate(1741,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mi" transform="translate(2130,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">为</text></g><g data-mml-node="mo" transform="translate(3130,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(3519,0)"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g><g data-mml-node="mi" transform="translate(4279,0)"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g><g data-mml-node="mi" transform="translate(4783,0)"><path data-c="1D438" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"></path></g><g data-mml-node="mo" transform="translate(5547,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mi" transform="translate(5936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">规</text></g><g data-mml-node="mi" transform="translate(6936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">定</text></g><g data-mml-node="mi" transform="translate(7936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(8936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">标</text></g><g data-mml-node="mi" transform="translate(9936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">准</text></g><g data-mml-node="mi" transform="translate(10936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(11936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">谱</text></g><g data-mml-node="mi" transform="translate(12936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">发</text></g><g data-mml-node="mi" transform="translate(13936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(14936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">效</text></g><g data-mml-node="mi" transform="translate(15936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">率</text></g><g data-mml-node="mi" transform="translate(16936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">函</text></g><g data-mml-node="mi" transform="translate(17936,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g><g data-mml-node="mi" transform="translate(18936,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">；</text></g></g></g></svg></mjx-container></p>
+<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="28.101ex" height="2.161ex" role="img" focusable="false" viewBox="0 -750 12420.8 955"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D719" d="M409 688Q413 694 421 694H429H442Q448 688 448 686Q448 679 418 563Q411 535 404 504T392 458L388 442Q388 441 397 441T429 435T477 418Q521 397 550 357T579 260T548 151T471 65T374 11T279 -10H275L251 -105Q245 -128 238 -160Q230 -192 227 -198T215 -205H209Q189 -205 189 -198Q189 -193 211 -103L234 -11Q234 -10 226 -10Q221 -10 206 -8T161 6T107 36T62 89T43 171Q43 231 76 284T157 370T254 422T342 441Q347 441 348 445L378 567Q409 686 409 688ZM122 150Q122 116 134 91T167 53T203 35T237 27H244L337 404Q333 404 326 403T297 395T255 379T211 350T170 304Q152 276 137 237Q122 191 122 150ZM500 282Q500 320 484 347T444 385T405 400T381 404H378L332 217L284 29Q284 27 285 27Q293 27 317 33T357 47Q400 66 431 100T475 170T494 234T500 282Z"></path></g><g data-mml-node="TeXAtom" transform="translate(629,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(466,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g></g></g><g data-mml-node="mi" transform="translate(1420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">为</text></g><g data-mml-node="mi" transform="translate(2420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">辐</text></g><g data-mml-node="mi" transform="translate(3420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">射</text></g><g data-mml-node="mi" transform="translate(4420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">通</text></g><g data-mml-node="mi" transform="translate(5420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">量</text></g><g data-mml-node="mi" transform="translate(6420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(7420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">光</text></g><g data-mml-node="mi" transform="translate(8420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">谱</text></g><g data-mml-node="mi" transform="translate(9420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">密</text></g><g data-mml-node="mi" transform="translate(10420.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">度</text></g><g data-mml-node="mi" transform="translate(11420.8,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">；</text></g></g></g></svg></mjx-container></p>
+<h3 id="5-9-发光强度"><a href="#5-9-发光强度" class="headerlink" title="5.9 发光强度"></a>5.9 发光强度</h3><p>发光强度（Luminous Intensity） 是光在某个方向上传播的量， 以坎德拉（cd）为单位。例如， 太阳发出的光遍布整个星系， 但我们可能只对照射在我们周围的光感兴趣。</p>
+<h3 id="5-10-照度、亮度"><a href="#5-10-照度、亮度" class="headerlink" title="5.10 照度、亮度"></a>5.10 照度、亮度</h3><p>照度（Illuminance） 是光线照射到物体上的程度， 以勒克斯（lux）为单位。亮（Luminance）是指物体或场景反射或发射的光的量，单位为坎德拉每平方米（cd/m²）。亮度可以测量被拍摄对象或场景的亮度， 也可以测量最终打印照片的亮度。</p>
+<h3 id="5-11-发光效率"><a href="#5-11-发光效率" class="headerlink" title="5.11 发光效率"></a>5.11 发光效率</h3><p>发光效率指的是光源的光通量与功率的比值。此功率可以指光源输出的辐射通量， 因此称为辐射发光效率； 也可以指提供光源的能， 因此称为电源发光效率。60W的白炽灯可以发出900流明的光， 其发光效率为 15 lm/W。LED发出900流明的光， 其功耗远低于10W， 其发光效率为 90 lm/W。LED的发光效率高于白炽灯。</p>
+<h3 id="5-12-小结"><a href="#5-12-小结" class="headerlink" title="5.12 小结"></a>5.12 小结</h3><ul>
+<li>黑体对于任何波长的电磁波的吸收系数为1， 透射系数为0</li>
+<li>显色指数是评价光源光质的技术指标。</li>
+<li>色度图是显示光源颜色的标准图。</li>
+<li>光通量指人眼所能感觉到的光源辐射通量。</li>
+<li>发光效率指的是光源的光通量与功率的比值。</li>
+</ul>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">机器视觉检测系统</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">bigfly</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2023-04-22 19:26:11</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2023/04/22/机器视觉检测系统/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/04/27/rcnn/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">rcnn</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/04/21/RCNN%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">RCNN代码复现</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%A7%86%E8%A7%89%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、视觉检测系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">1、系统组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E5%85%89%E6%BA%90"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1光源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E9%95%9C%E5%A4%B4"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2镜头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E7%9B%B8%E6%9C%BA"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3相机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4%E5%9B%BE%E5%83%8F%E6%8A%93%E6%8B%8D"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4图像抓拍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5图像处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6%E6%89%A7%E8%A1%8C%E6%9C%BA%E6%9E%84"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6执行机构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E4%B8%8E%E4%BA%BA%E7%B1%BB%E8%A7%86%E8%A7%89%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.</span> <span class="nav-text">2、机器视觉与人类视觉的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E8%A7%82%E5%AF%9F%E9%80%9F%E5%BA%A6"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1观察速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E7%A9%BA%E9%97%B4%E5%88%86%E8%BE%A8%E8%83%BD%E5%8A%9B"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2空间分辨能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BA%AE%E5%BA%A6%E5%88%86%E8%BE%A8%E8%83%BD%E5%8A%9B%EF%BC%88%E8%89%B2%E6%B7%B1%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 亮度分辨能力（色深）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4%E5%85%89%E8%B0%B1%E8%8C%83%E5%9B%B4"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4光谱范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E8%A7%82%E6%B5%8B%E8%B7%9D%E7%A6%BB"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 观测距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E8%A7%82%E6%B5%8B%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 观测环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E8%A7%82%E6%B5%8B%E7%BB%93%E6%9E%9C%E9%87%8F%E5%8C%96"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7 观测结果量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-%E8%A7%82%E6%B5%8B%E7%BB%93%E6%9E%9C%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="nav-number">1.2.8.</span> <span class="nav-text">2.8 观测结果可靠性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E4%B8%8E%E9%9D%9E%E7%94%B5%E9%87%8F%E7%94%B5%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.</span> <span class="nav-text">3、机器视觉与非电量电测系统的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%85%B3%E4%BA%8E%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">1.4.</span> <span class="nav-text">4、关于机器视觉编程语言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81LED%E5%85%89%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">二、LED光源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E8%83%BD%E7%BA%A7%E4%B8%8E%E8%83%BD%E5%B8%A6"><span class="nav-number">2.1.</span> <span class="nav-text">1、能级与能带</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E5%8E%9F%E5%AD%90%E7%9A%84%E8%83%BD%E7%BA%A7%EF%BC%88%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1原子的能级（基本概念）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-%E5%8E%9F%E5%AD%90%E7%9A%84%E5%AE%9A%E6%80%81%E3%80%81-%E5%9F%BA%E6%80%81%E3%80%81-%E6%BF%80%E5%8F%91%E6%80%81"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">1.1.1 原子的定态、 基态、 激发态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-%E5%8E%9F%E5%AD%90%E7%9A%84%E8%83%BD%E7%BA%A7%E8%B7%83%E8%BF%81"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">1.1.2 原子的能级跃迁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%9B%BA%E4%BD%93%E7%9A%84%E8%83%BD%E5%B8%A6"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 固体的能带</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E8%83%BD%E5%B8%A6%E7%9A%84%E5%BD%A2%E6%88%90"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">1.2.1 能带的形成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E8%83%BD%E5%B8%A6%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">1.2.2 能带的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E8%83%BD%E5%B8%A6%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">1.2.3 能带的重要性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-%E4%B8%8D%E5%90%8C%E6%9D%90%E6%96%99%E7%9A%84%E8%83%BD%E5%B8%A6"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">1.2.4 不同材料的能带</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E5%9B%BA%E4%BD%93%E8%83%BD%E5%B8%A6%E5%B0%8F%E7%BB%93"><span class="nav-number">2.1.2.5.</span> <span class="nav-text">1.2.5 固体能带小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81-%E8%BE%90%E5%B0%84%E5%90%B8%E6%94%B6%E3%80%81-%E8%87%AA%E5%8F%91%E8%BE%90%E5%B0%84%E3%80%81-%E5%8F%97%E6%BF%80%E8%BE%90%E5%B0%84"><span class="nav-number">2.2.</span> <span class="nav-text">2、 辐射吸收、 自发辐射、 受激辐射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E5%85%89%E5%AD%90"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1光子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E8%BE%90%E5%B0%84%E6%88%96%E5%85%89%E7%9A%84%E5%90%B8%E6%94%B6"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2辐射或光的吸收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E8%87%AA%E5%8F%91%E8%BE%90%E5%B0%84"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 自发辐射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%8F%97%E6%BF%80%E8%BE%90%E5%B0%84"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4 受激辐射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81PN%E7%BB%93%E7%9A%84%E5%8F%91%E5%85%89%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">3、PN结的发光原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%9C%AC%E5%BE%81%E5%8D%8A%E5%AF%BC%E4%BD%93"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 本征半导体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-N%E5%9E%8B%E5%8D%8A%E5%AF%BC%E4%BD%93"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 N型半导体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-P%E5%9E%8B%E5%8D%8A%E5%AF%BC%E4%BD%93"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3 P型半导体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84PN%E7%BB%93"><span class="nav-number">2.3.4.</span> <span class="nav-text">3.4 半导体的PN结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84%E5%B8%A6%E9%9A%99"><span class="nav-number">2.3.5.</span> <span class="nav-text">3.5 半导体的带隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-PN%E7%BB%93%E7%9A%84%E5%8F%91%E5%85%89%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.6.</span> <span class="nav-text">3.6 PN结的发光原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81-LED%E5%8F%91%E5%85%89%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">2.4.</span> <span class="nav-text">4、 LED发光二极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-GaN%E5%9F%BA%E6%9D%90%E6%96%99"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 GaN基材料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-LED%E8%8A%AF%E7%89%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 LED芯片结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1-%E8%A1%AC%E5%BA%95%E5%8A%9F%E8%83%BD"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">4.2.1 衬底功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2-%E8%A1%AC%E5%BA%95%E6%9D%90%E6%96%99"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">4.2.2 衬底材料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-%E6%88%90%E6%A0%B8%E5%B1%82"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">4.2.3 成核层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-4-n-GaN%E5%B1%82"><span class="nav-number">2.4.2.4.</span> <span class="nav-text">4.2.4 n-GaN层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-5%E6%9C%89%E6%BA%90%E5%B1%82"><span class="nav-number">2.4.2.5.</span> <span class="nav-text">4.2.5有源层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-6-p-GaN%E5%B1%82"><span class="nav-number">2.4.2.6.</span> <span class="nav-text">4.2.6 p-GaN层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-LED%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.3.</span> <span class="nav-text">4.3 LED结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E5%9C%86%E9%A1%B6%E5%9E%8BLED"><span class="nav-number">2.4.3.1.</span> <span class="nav-text">4.3.1 圆顶型LED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E8%B4%B4%E7%89%87%E5%9E%8B"><span class="nav-number">2.4.3.2.</span> <span class="nav-text">4.3.2 贴片型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-COB%E5%9E%8B"><span class="nav-number">2.4.3.3.</span> <span class="nav-text">4.3.3 COB型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-4-%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%AF%94%E8%BE%83"><span class="nav-number">2.4.3.4.</span> <span class="nav-text">4.3.4 三种类型比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-LED%E7%9A%84%E6%8C%87%E5%90%91%E6%80%A7"><span class="nav-number">2.4.4.</span> <span class="nav-text">4.4 LED的指向性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-LED%E7%9A%84%E9%A2%9C%E8%89%B2"><span class="nav-number">2.4.5.</span> <span class="nav-text">4.5 LED的颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E7%99%BD%E8%89%B2LED"><span class="nav-number">2.4.6.</span> <span class="nav-text">4.6 白色LED</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-1-%E6%B3%A2%E9%95%BF%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.4.6.1.</span> <span class="nav-text">4.6.1 波长转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-2-%E5%BD%A9%E8%89%B2LED%E6%B7%B7%E5%90%88"><span class="nav-number">2.4.6.2.</span> <span class="nav-text">4.6.2 彩色LED混合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-3%E5%90%8C%E8%B4%A8%E5%A4%96%E5%BB%B6%E7%A1%92%E5%8C%96%E9%94%8C"><span class="nav-number">2.4.6.3.</span> <span class="nav-text">4.6.3同质外延硒化锌</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-LED%E7%9A%84%E4%BE%9B%E7%94%B5"><span class="nav-number">2.4.7.</span> <span class="nav-text">4.7 LED的供电</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E3%80%81%E5%85%89%E6%BA%90%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.5.</span> <span class="nav-text">5 、光源相关术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%BB%91%E4%BD%93"><span class="nav-number">2.5.1.</span> <span class="nav-text">5.1 黑体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E8%89%B2%E6%B8%A9"><span class="nav-number">2.5.2.</span> <span class="nav-text">5.2 色温</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%98%BE%E8%89%B2%E6%8C%87%E6%95%B0"><span class="nav-number">2.5.3.</span> <span class="nav-text">5.3 显色指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E8%89%B2%E5%BA%A6"><span class="nav-number">2.5.4.</span> <span class="nav-text">5.4 色度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E5%85%89%E8%B0%B1%E5%8F%91%E5%85%89%E6%95%88%E7%8E%87"><span class="nav-number">2.5.5.</span> <span class="nav-text">5.5 光谱发光效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-%E5%85%89%E8%B0%B1%E5%AF%86%E5%BA%A6"><span class="nav-number">2.5.6.</span> <span class="nav-text">5.6 光谱密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-%E8%BE%90%E5%B0%84%E9%80%9A%E9%87%8F"><span class="nav-number">2.5.7.</span> <span class="nav-text">5.7 辐射通量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-%E5%85%89%E9%80%9A%E9%87%8F"><span class="nav-number">2.5.8.</span> <span class="nav-text">5.8 光通量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-9-%E5%8F%91%E5%85%89%E5%BC%BA%E5%BA%A6"><span class="nav-number">2.5.9.</span> <span class="nav-text">5.9 发光强度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-10-%E7%85%A7%E5%BA%A6%E3%80%81%E4%BA%AE%E5%BA%A6"><span class="nav-number">2.5.10.</span> <span class="nav-text">5.10 照度、亮度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-11-%E5%8F%91%E5%85%89%E6%95%88%E7%8E%87"><span class="nav-number">2.5.11.</span> <span class="nav-text">5.11 发光效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-12-%E5%B0%8F%E7%BB%93"><span class="nav-number">2.5.12.</span> <span class="nav-text">5.12 小结</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2025
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">bigfly</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    本站由 <span class="tooltip" data-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span> 提供部署服务
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

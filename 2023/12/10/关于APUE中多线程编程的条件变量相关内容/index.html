@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="bigfly">
+    
+    <title>
+        
+            关于APUE中多线程编程的条件变量相关内容 |
+        
+        BigflyのBlog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/head.jpg","favicon":"/images/logo.svg","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Stay hungry, Stay foolish.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"twikoo","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":"欢迎大家评论留言："},"gitalk":{"github_id":"bigflya","github_admins":null,"repository":"blogcomment","client_id":"316266297ae09f8db378","client_secret":"463a369b390196542f5f4369654d53e8f00a75b8","proxy":null},"twikoo":{"env_id":"https://bigflya.zeabur.app","region":null,"version":"1.6.16"},"waline":{"server_url":null,"reaction":null,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/head.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               BigflyのBlog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/CodeModules"
+                            >
+                                CODE
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/CodeModules">CODE</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">关于APUE中多线程编程的条件变量相关内容</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/head.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">bigfly</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-12-10 10:01:56</span>
+        <span class="mobile">2023-12-10 10:01</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-12-10 10:01:56</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>LINUX环境下多线程编程肯定会遇到需要条件变量的情况，此时必然要使用pthread_cond_wait()和其他发信号的函数函数，然而在了解这部内容的过程中，有些疑惑。</p>
+<h2 id="一、代码"><a href="#一、代码" class="headerlink" title="一、代码"></a>一、代码</h2><p>下面是笔者在学习APUE的过程中使用多线程相关知识实现对指定范围内的质数的筛选，并在屏幕上打印出找到的质数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过池类算法，和 互斥量也就是锁相关的知识实现了，固定区间的质数的筛选。</span></span><br><span class="line"><span class="comment">// 重点内容：质数筛选的方法，以及 临界区代码 的跳转存在的问题，</span></span><br><span class="line"><span class="comment">// 查询法，降低cpu的占用率</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LEFT 30000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> RIGHT 30000200</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> THRNUM 4</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">pthread_mutex_t</span> mut_num = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line"><span class="type">static</span> <span class="type">pthread_cond_t</span> cond_num = PTHREAD_COND_INITIALIZER;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> *<span class="title function_">thr_prime</span><span class="params">(<span class="type">void</span> *p)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> <span class="comment">// main线程</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> err;</span><br><span class="line">    <span class="type">pthread_t</span> tid[THRNUM];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; THRNUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        err = pthread_create(tid + i, <span class="literal">NULL</span>, thr_prime, (<span class="type">void</span> *)i); <span class="comment">// NULL表示默认属性,thr_prime表示线程要做的事情</span></span><br><span class="line">        <span class="keyword">if</span> (err)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;pthread_create():%s\n&quot;</span>, strerror(err));</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下发任务</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = LEFT; i &lt;= RIGHT; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pthread_mutex_lock(&amp;mut_num);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 循环判断任务有没有被抢走</span></span><br><span class="line">        <span class="keyword">while</span> (num != <span class="number">0</span>) <span class="comment">// 任务没有被抢走，分配数的时候 ，三个池在抢，一旦抢走将其设置为0</span></span><br><span class="line">        &#123;</span><br><span class="line">            pthread_cond_wait(&amp;cond_num, &amp;mut_num);<span class="comment">//期待num变为0，谁会把num变为0呢？</span></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        num = i; <span class="comment">// 放任务</span></span><br><span class="line"></span><br><span class="line">        pthread_cond_signal(&amp;cond_num); <span class="comment">// 叫醒 下游任何一个就行，而不是叫醒全部，这里叫醒任意一个闲的，若全部叫醒用broadcast</span></span><br><span class="line">        </span><br><span class="line">        pthread_mutex_unlock(&amp;mut_num); <span class="comment">// 解锁</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_lock(&amp;mut_num);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//*** for循环完成后，当前线程若又接到调度，那么不加下面的while 将会使最后一个任务被覆盖掉</span></span><br><span class="line">    <span class="keyword">while</span> (num != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        pthread_mutex_unlock(&amp;mut_num);</span><br><span class="line">        sched_yield();</span><br><span class="line">        pthread_mutex_lock(&amp;mut_num);  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    num = <span class="number">-1</span>;<span class="comment">// num =-1 说明没任务了，</span></span><br><span class="line">    </span><br><span class="line">    pthread_cond_broadcast(&amp;cond_num);</span><br><span class="line">    pthread_mutex_unlock(&amp;mut_num); <span class="comment">// 解锁</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; THRNUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pthread_join(tid[i], <span class="literal">NULL</span>); <span class="comment">// 收尸</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_destroy(&amp;mut_num);</span><br><span class="line">    pthread_cond_destroy(&amp;cond_num);</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> *<span class="title function_">thr_prime</span><span class="params">(<span class="type">void</span> *p)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> j, mark, i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123; <span class="comment">// 临界区</span></span><br><span class="line"></span><br><span class="line">        pthread_mutex_lock(&amp;mut_num);</span><br><span class="line">        <span class="keyword">while</span> (num == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            pthread_cond_wait(&amp;cond_num, &amp;mut_num); <span class="comment">// 解锁等待num变成非零，谁会把num变为非零呢？这里是查询法，而不是一直循环</span></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 临界区跳转，且跳转的目的地是临界区外，一定要先解锁再跳转。否则会出现死锁。</span></span><br><span class="line">            pthread_mutex_unlock(&amp;mut_num);</span><br><span class="line">            <span class="keyword">break</span>; <span class="comment">// 总任务完成</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i = num;</span><br><span class="line"></span><br><span class="line">        num = <span class="number">0</span>;</span><br><span class="line">        pthread_cond_broadcast(&amp;cond_num); <span class="comment">// 将num设置为0 ，发送一个通知</span></span><br><span class="line">        pthread_mutex_unlock(&amp;mut_num);</span><br><span class="line"></span><br><span class="line">        mark = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">2</span>; j &lt; i / <span class="number">2</span>; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % j == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                mark = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (mark)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;[%d]%d is a primer\n&quot;</span>, (<span class="type">int</span>)p, i);</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="二、疑惑点：-pthread-cond-broadcast与pthread-mutex-unlock的先后顺序问题"><a href="#二、疑惑点：-pthread-cond-broadcast与pthread-mutex-unlock的先后顺序问题" class="headerlink" title="二、疑惑点： pthread_cond_broadcast与pthread_mutex_unlock的先后顺序问题"></a>二、疑惑点： pthread_cond_broadcast与pthread_mutex_unlock的先后顺序问题</h2><blockquote>
+<p>chatGPT给出的答案：</p>
+</blockquote>
+<p>在多线程编程中，<code>pthread_mutex_unlock</code> 和 <code>pthread_cond_broadcast</code> 的执行顺序通常是没有明确要求的，因为它们操作的是不同的同步原语：互斥锁和条件变量。</p>
+<blockquote>
+<p>网上大多数的代码给出的答案：</p>
+</blockquote>
+<p>先pthread_cond_broadcast再pthread_mutex_unlock</p>
+<blockquote>
+<p>笔者个人的思考总结：</p>
+</blockquote>
+<ol>
+<li>先pthread_cond_broadcast再pthread_mutex_unlock会出现的问题：这样做pthread_cond_broadcast处在临界区内，只有当pthread_mutex_unlock解锁之后，其他子线程才有机会加锁，加锁成功的线程才能cond_wait收到广播信号，倘若在pthread_cond_broadcast与pthread_mutex_unlock之间还有很多代码需要执行，那此刻pthread_cond_broadcast尽管发送了信号，但其也是阻塞状态，只有当unlock之后其他子线程才能抢锁然后cond_wait收到cond_broadcast发送的信号。</li>
+<li>先pthread_mutex_unlock 再pthread_cond_broadcast会出现的问题：<strong>通知时机问题：</strong> ( 如果先解锁再广播，有可能在解锁后，条件变量的等待线程还未来得及执行。这样，等待线程可能错过了通知，从而导致它们继续等待而不被唤醒。从而使程序出现不期望的结果)   <strong>竞态条件：</strong> (如果在解锁互斥锁后，调用 <code>pthread_cond_broadcast</code> 之前有其他线程抢占执行，并尝试获取互斥锁进行修改，那么这些修改可能与 <code>pthread_cond_broadcast</code> 同时发生，导致不一致的状态。意思就是，若存在刚解锁还没来得及broadcast时，当前线程被操作系统调度出CPU,而其他线程刚好被调度并尝试获取相同的互斥锁，此时线程就有机会在广播之前获取互斥锁并修改共享资源。接着，执行广播的线程再次获取互斥锁，执行广播，但但有线程已经修改了共享资源，这可能导致不一致的状态，产生竞态条件。)</li>
+</ol>
+<blockquote>
+<p>总结：</p>
+</blockquote>
+<p>先解锁再广播，虽然等待条件的线程能够尽早获得互斥锁然后cond_wait可以很快的收到广播信号，但是这种做法存在潜在的问题，可能会导致在广播发送信号的瞬间其他线程修改了共享资源，从而可能引起竞态条件或不一致性。而先再临界区内广播然后再解锁，这样可以避免以上潜在问题，代价就是速度变慢了，若在调用 pthread_cond_broadcast 之前，互斥锁已经被解锁。这样一来，虽然被唤醒的线程就可以尽快获得互斥锁，进入临界区执行，但是，若在调用pthread_cond_broadcast广播的时候其他线程瞬间修改共享资源，会出现错误。</p>
+<p>尽管先unlock 再broadcast，出现错误的概率可能很低，比中彩票的概率还低，但从逻辑分析，这种问题是存在的，所以为了避免这种不期望事情发生，一般采取先broadcast 然后再unlock。</p>
+<h2 id="三、one-more-thing-求质数的巧妙方法"><a href="#三、one-more-thing-求质数的巧妙方法" class="headerlink" title="三、one more thing(求质数的巧妙方法)"></a>三、one more thing(求质数的巧妙方法)</h2><p>这里判断质数的方法是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mark = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span> (j = <span class="number">2</span>; j &lt; i / <span class="number">2</span>; ++j)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">if</span> (i % j == <span class="number">0</span>)</span><br><span class="line">          &#123;</span><br><span class="line">              mark = <span class="number">0</span>;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (mark)</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot;[%d]%d is a primer\n&quot;</span>, (<span class="type">int</span>)p, i);</span><br></pre></td></tr></table></figure>
+
+<p>其中i是待判断的数。</p>
+<p>质数的定义：只能分解为1和它本身两个因数</p>
+<p>上面的做法给i&#x2F;2是为了减少计算量，直接写i也没问题，但是为什么可以写i&#x2F;2呢？</p>
+<p>这是因为如果 <code>i</code> 有大于<code>i/2</code>的因子，那么它的另一个因子一定小于<code>i/2</code>，否则两个因子的乘积就会超过 <code>i</code>。因此，只需要判断 <code>i</code> 是否在<code>2</code>到<code>i/2</code>的范围内有因子即可。</p>
+<p>还有一种做法是，要判断到<code>sqrt(i)</code>即可，因为如果 <code>i</code> 有一个大于<code>sqrt(i)</code>的因子，那么它的另一个因子一定小于<code>sqrt(i)</code>，两个因子的乘积就会超过 <code>i</code>。因此，循环的条件可以改为 <code>j &lt;= sqrt(i)</code>。这样也可以减少不必要的循环次数，但由于要调用sqrt对应的函数库或者自己写相关的开平方函数，所以没有采用这种方法。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">关于APUE中多线程编程的条件变量相关内容</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">bigfly</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2023-12-10 10:01:56</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2023/12/10/关于APUE中多线程编程的条件变量相关内容/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Linux/">#Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/12/13/%E5%8F%8B%E5%85%83%E7%B1%BB%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">友元类使用的一些问题</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/12/04/%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6777%E6%9D%83%E9%99%90(%E5%8F%AF%E8%AF%BB%E5%8F%AF%E5%86%99%E5%8F%AF%E6%89%A7%E8%A1%8C)/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">关于文件777权限(可读可写可执行)</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">一、代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%96%91%E6%83%91%E7%82%B9%EF%BC%9A-pthread-cond-broadcast%E4%B8%8Epthread-mutex-unlock%E7%9A%84%E5%85%88%E5%90%8E%E9%A1%BA%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">二、疑惑点： pthread_cond_broadcast与pthread_mutex_unlock的先后顺序问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81one-more-thing-%E6%B1%82%E8%B4%A8%E6%95%B0%E7%9A%84%E5%B7%A7%E5%A6%99%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">三、one more thing(求质数的巧妙方法)</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2023</span> -
+            
+            2025
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">bigfly</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    本站由 <span class="tooltip" data-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span> 提供部署服务
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
